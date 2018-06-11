@@ -9,8 +9,16 @@
 /* Begin PBXBuildFile section */
 		870C12E95EEA4A7BA59CAA6B /* Pods_TakeHomeTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A3F6E437CD53F56BC386F39 /* Pods_TakeHomeTest.framework */; };
 		97FECCEB64BFD7C388075F46 /* Pods_TakeHomeTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D93E1464A041AD0D189A7E38 /* Pods_TakeHomeTestTests.framework */; };
+		CE13831D20CEB5FD004F1CC1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13831B20CEB5FD004F1CC1 /* MainViewController.swift */; };
+		CE13831E20CEB5FD004F1CC1 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13831C20CEB5FD004F1CC1 /* MainViewModel.swift */; };
+		CE13832120CEB64C004F1CC1 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13831F20CEB64C004F1CC1 /* MapViewController.swift */; };
+		CE13832220CEB64C004F1CC1 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13832020CEB64C004F1CC1 /* MapViewModel.swift */; };
+		CE13832420CEB692004F1CC1 /* ScenicPhotoLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13832320CEB692004F1CC1 /* ScenicPhotoLocation.swift */; };
+		CE13832620CEB768004F1CC1 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE13832520CEB767004F1CC1 /* CoreLocation.framework */; };
+		CE13832A20CEB8C0004F1CC1 /* LocationsHttpServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13832720CEB8BF004F1CC1 /* LocationsHttpServiceProtocol.swift */; };
+		CE13832B20CEB8C0004F1CC1 /* LocationsHttpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13832820CEB8C0004F1CC1 /* LocationsHttpService.swift */; };
+		CE13832C20CEB8C0004F1CC1 /* LocationsFakeHttpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13832920CEB8C0004F1CC1 /* LocationsFakeHttpService.swift */; };
 		CEDE173520C69A690057E06E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDE173420C69A690057E06E /* AppDelegate.swift */; };
-		CEDE173720C69A690057E06E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDE173620C69A690057E06E /* ViewController.swift */; };
 		CEDE173A20C69A690057E06E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEDE173820C69A690057E06E /* Main.storyboard */; };
 		CEDE173C20C69A6B0057E06E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEDE173B20C69A6B0057E06E /* Assets.xcassets */; };
 		CEDE173F20C69A6B0057E06E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEDE173D20C69A6B0057E06E /* LaunchScreen.storyboard */; };
@@ -32,9 +40,17 @@
 		2A3F6E437CD53F56BC386F39 /* Pods_TakeHomeTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TakeHomeTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		66C189BE2163D6BE7A42BC54 /* Pods-TakeHomeTestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TakeHomeTestTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TakeHomeTestTests/Pods-TakeHomeTestTests.release.xcconfig"; sourceTree = "<group>"; };
 		81CB4CBEB4435221A79941FF /* Pods-TakeHomeTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TakeHomeTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-TakeHomeTest/Pods-TakeHomeTest.release.xcconfig"; sourceTree = "<group>"; };
+		CE13831B20CEB5FD004F1CC1 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		CE13831C20CEB5FD004F1CC1 /* MainViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		CE13831F20CEB64C004F1CC1 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		CE13832020CEB64C004F1CC1 /* MapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		CE13832320CEB692004F1CC1 /* ScenicPhotoLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenicPhotoLocation.swift; sourceTree = "<group>"; };
+		CE13832520CEB767004F1CC1 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		CE13832720CEB8BF004F1CC1 /* LocationsHttpServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsHttpServiceProtocol.swift; sourceTree = "<group>"; };
+		CE13832820CEB8C0004F1CC1 /* LocationsHttpService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsHttpService.swift; sourceTree = "<group>"; };
+		CE13832920CEB8C0004F1CC1 /* LocationsFakeHttpService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsFakeHttpService.swift; sourceTree = "<group>"; };
 		CEDE173120C69A690057E06E /* TakeHomeTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TakeHomeTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEDE173420C69A690057E06E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CEDE173620C69A690057E06E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CEDE173920C69A690057E06E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CEDE173B20C69A6B0057E06E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEDE173E20C69A6B0057E06E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE13832620CEB768004F1CC1 /* CoreLocation.framework in Frameworks */,
 				870C12E95EEA4A7BA59CAA6B /* Pods_TakeHomeTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -69,6 +86,7 @@
 		39525A49EE072A07F775C90B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE13832520CEB767004F1CC1 /* CoreLocation.framework */,
 				2A3F6E437CD53F56BC386F39 /* Pods_TakeHomeTest.framework */,
 				D93E1464A041AD0D189A7E38 /* Pods_TakeHomeTestTests.framework */,
 			);
@@ -84,6 +102,60 @@
 				66C189BE2163D6BE7A42BC54 /* Pods-TakeHomeTestTests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		CE13830E20CEB2FA004F1CC1 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				CE13830F20CEB2FA004F1CC1 /* Models */,
+				CE13831120CEB2FA004F1CC1 /* Locations HTTP Service */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		CE13830F20CEB2FA004F1CC1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CE13832320CEB692004F1CC1 /* ScenicPhotoLocation.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CE13831120CEB2FA004F1CC1 /* Locations HTTP Service */ = {
+			isa = PBXGroup;
+			children = (
+				CE13832920CEB8C0004F1CC1 /* LocationsFakeHttpService.swift */,
+				CE13832820CEB8C0004F1CC1 /* LocationsHttpService.swift */,
+				CE13832720CEB8BF004F1CC1 /* LocationsHttpServiceProtocol.swift */,
+			);
+			path = "Locations HTTP Service";
+			sourceTree = "<group>";
+		};
+		CE13831320CEB36B004F1CC1 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				CE13831920CEB36B004F1CC1 /* Main */,
+				CE13831520CEB36B004F1CC1 /* Map */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		CE13831520CEB36B004F1CC1 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				CE13831F20CEB64C004F1CC1 /* MapViewController.swift */,
+				CE13832020CEB64C004F1CC1 /* MapViewModel.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		CE13831920CEB36B004F1CC1 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				CE13831B20CEB5FD004F1CC1 /* MainViewController.swift */,
+				CE13831C20CEB5FD004F1CC1 /* MainViewModel.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		CEDE172820C69A690057E06E = {
@@ -110,7 +182,8 @@
 			isa = PBXGroup;
 			children = (
 				CEDE173420C69A690057E06E /* AppDelegate.swift */,
-				CEDE173620C69A690057E06E /* ViewController.swift */,
+				CE13830E20CEB2FA004F1CC1 /* Core */,
+				CE13831320CEB36B004F1CC1 /* Modules */,
 				CEDE173820C69A690057E06E /* Main.storyboard */,
 				CEDE173B20C69A6B0057E06E /* Assets.xcassets */,
 				CEDE173D20C69A6B0057E06E /* LaunchScreen.storyboard */,
@@ -289,8 +362,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEDE173720C69A690057E06E /* ViewController.swift in Sources */,
+				CE13832B20CEB8C0004F1CC1 /* LocationsHttpService.swift in Sources */,
+				CE13831D20CEB5FD004F1CC1 /* MainViewController.swift in Sources */,
 				CEDE173520C69A690057E06E /* AppDelegate.swift in Sources */,
+				CE13832420CEB692004F1CC1 /* ScenicPhotoLocation.swift in Sources */,
+				CE13832A20CEB8C0004F1CC1 /* LocationsHttpServiceProtocol.swift in Sources */,
+				CE13832120CEB64C004F1CC1 /* MapViewController.swift in Sources */,
+				CE13831E20CEB5FD004F1CC1 /* MainViewModel.swift in Sources */,
+				CE13832220CEB64C004F1CC1 /* MapViewModel.swift in Sources */,
+				CE13832C20CEB8C0004F1CC1 /* LocationsFakeHttpService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

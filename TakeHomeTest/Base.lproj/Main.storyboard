@@ -1,24 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="TakeHomeTest" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Cu1-FI-WHD">
+                                <rect key="frame" x="16" y="28" width="343" height="29"/>
+                                <segments>
+                                    <segment title="MAP"/>
+                                    <segment title="LIST"/>
+                                </segments>
+                            </segmentedControl>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dl4-pD-j2F">
+                                <rect key="frame" x="0.0" y="72" width="375" height="595"/>
+                                <connections>
+                                    <segue destination="g9U-ol-ui4" kind="embed" id="D2W-FF-D6l"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Cu1-FI-WHD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="5k3-jG-6Gb"/>
+                            <constraint firstItem="Dl4-pD-j2F" firstAttribute="top" secondItem="Cu1-FI-WHD" secondAttribute="bottom" constant="16" id="6Cn-pj-naO"/>
+                            <constraint firstItem="Dl4-pD-j2F" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="He2-XC-SUQ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Cu1-FI-WHD" secondAttribute="trailing" constant="16" id="Uzs-ct-vWn"/>
+                            <constraint firstItem="Cu1-FI-WHD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Wci-cG-7Lz"/>
+                            <constraint firstItem="Dl4-pD-j2F" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="lOl-xh-39q"/>
+                            <constraint firstItem="Dl4-pD-j2F" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="r8r-LO-849"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="containerView" destination="Dl4-pD-j2F" id="LBf-Yc-v5r"/>
+                        <outlet property="tabSegmentedControl" destination="Cu1-FI-WHD" id="czo-4d-gay"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="Asz-ES-Q4M">
+            <objects>
+                <viewController id="g9U-ol-ui4" customClass="MapViewController" customModule="TakeHomeTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="S0N-Y9-W2u">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="595"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mhw-VW-uAu">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="595"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Mhw-VW-uAu" secondAttribute="trailing" id="HPF-5B-Pry"/>
+                            <constraint firstAttribute="bottom" secondItem="Mhw-VW-uAu" secondAttribute="bottom" id="Wan-kV-0hq"/>
+                            <constraint firstItem="Mhw-VW-uAu" firstAttribute="leading" secondItem="S0N-Y9-W2u" secondAttribute="leading" id="nVl-RU-Q5k"/>
+                            <constraint firstItem="Mhw-VW-uAu" firstAttribute="top" secondItem="S0N-Y9-W2u" secondAttribute="top" id="rnP-gy-FY8"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="yKb-Q6-Pov"/>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="Mhw-VW-uAu" id="430-Db-sSu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CUS-3G-dGx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1197.5999999999999" y="-198.35082458770617"/>
+        </scene>
+        <!--Locations List View Controller-->
+        <scene sceneID="2GF-5d-rEx">
+            <objects>
+                <tableViewController id="fKT-FN-aEI" customClass="LocationsListViewController" customModule="TakeHomeTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Lfj-Av-IZZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="0NO-B9-Cty">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0NO-B9-Cty" id="APA-DC-MEe">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="fKT-FN-aEI" id="0Hk-m6-mSG"/>
+                            <outlet property="delegate" destination="fKT-FN-aEI" id="8V3-V6-6ZB"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SyH-Z2-wd2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1198" y="526"/>
         </scene>
     </scenes>
 </document>
