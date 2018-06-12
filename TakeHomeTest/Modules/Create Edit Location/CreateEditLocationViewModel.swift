@@ -14,11 +14,19 @@ class CreateEditLocationViewModel {
     private(set) var location: ScenicPhotoLocation?
 
     var name: String?
-    var description: String?
+    var notes: String?
     let coordinate: CLLocationCoordinate2D
 
     var isSaveEnabled: Bool {
         return name != nil && name?.isEmpty == false
+    }
+
+    var screenTitle: String {
+        if location == nil {
+            return NSLocalizedString("New Location", comment: "Title for screen when creating location")
+        } else {
+            return NSLocalizedString("Edit Location", comment: "Title for screen when editing location")
+        }
     }
 
     private let localStorage = ScenicPhotoLocationLocalStorage()
@@ -26,7 +34,7 @@ class CreateEditLocationViewModel {
     init(location: ScenicPhotoLocation) {
         self.location = location
         self.name = location.name
-        self.description = location.notes
+        self.notes = location.notes
         self.coordinate = location.coordinate
     }
 
@@ -42,14 +50,14 @@ class CreateEditLocationViewModel {
             let updatedLocation = ScenicPhotoLocation(name: name,
                                                       latitude: existingLocation.latitude,
                                                       longitude: existingLocation.longitude,
-                                                      notes: description)
+                                                      notes: notes)
             localStorage.updateLocation(updatedLocation)
             location = updatedLocation
         } else {
             let newLocation = ScenicPhotoLocation(name: name,
                                                   latitude: coordinate.latitude,
                                                   longitude: coordinate.longitude,
-                                                  notes: description)
+                                                  notes: notes)
             localStorage.createLocation(newLocation)
             location = newLocation
         }

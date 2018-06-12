@@ -23,7 +23,7 @@ class LocationDetailsViewController: UIViewController {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
-    @IBOutlet weak var descriptionTextView: UITextView!
+    @IBOutlet weak var notesTextView: UITextView!
     @IBOutlet weak var editButton: UIBarButtonItem!
 
     override func viewDidLoad() {
@@ -47,7 +47,7 @@ class LocationDetailsViewController: UIViewController {
     private func fillLocationInfo() {
         nameLabel.text = viewModel.name
         subtitleLabel.text = viewModel.subtitle
-        descriptionTextView.text = viewModel.description
+        notesTextView.text = viewModel.notes
     }
 
 }

@@ -7,14 +7,17 @@
 //
 
 import Foundation
+import CoreLocation
 
 class LocationDetailsViewModel {
 
     private(set) var location: ScenicPhotoLocation
 
     var name: String
-    var description: String?
-    var subtitle: String? // TODO: calculate distance
+    var notes: String?
+    var subtitle: String?
+
+    private let emptyDescriptionPlaceholder = NSLocalizedString("This location has no notes.", comment: "Notes placeholder")
 
     var createEditLocationViewModel: CreateEditLocationViewModel {
         return CreateEditLocationViewModel(location: location)
@@ -23,7 +26,8 @@ class LocationDetailsViewModel {
     init(location: ScenicPhotoLocation) {
         self.location = location
         self.name = location.name
-        self.description = location.notes
+        self.notes = location.notes?.isEmpty == false ? location.notes : emptyDescriptionPlaceholder
+        self.subtitle = CLLocationManager().location?.coordinate.formattedDistance(to: location.coordinate)
     }
 
 }

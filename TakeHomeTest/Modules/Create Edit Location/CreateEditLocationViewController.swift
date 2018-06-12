@@ -15,16 +15,24 @@ class CreateEditLocationViewController: UIViewController {
     var modelUpdated: ((ScenicPhotoLocation) -> Void)?
 
     @IBOutlet private weak var nameTextField: UITextField!
-    @IBOutlet private weak var descriptionTextView: UITextView!
+    @IBOutlet private weak var notesTextView: UITextView!
     @IBOutlet private weak var saveButton: UIBarButtonItem!
+
+    private let notesPlaceholderColor = UIColor.lightGray
+    private let notesDefaultTextColor = UIColor.black
+    private var notesPlaceholderText = NSLocalizedString("Enter the description", comment: "Notes placeholder")
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         nameTextField.becomeFirstResponder()
+        title = viewModel.screenTitle
         nameTextField.text = viewModel.name
-        descriptionTextView.text = viewModel.description
+        notesTextView.text = viewModel.notes
         saveButton.isEnabled = viewModel.isSaveEnabled
+
+        if notesTextView.text.isEmpty {
+            enableNotesTextViewPlaceholder()
+        }
     }
 
     @IBAction func cancelPressed(_ sender: Any) {
@@ -32,6 +40,9 @@ class CreateEditLocationViewController: UIViewController {
     }
 
     @IBAction func savePressed(_ sender: Any) {
+        viewModel.name = nameTextField.text
+        viewModel.notes = isNotesPlaceholderEnabled ? nil : notesTextView.text
+
         viewModel.saveLocation()
         if let location = viewModel.location {
             modelUpdated?(location)
@@ -44,6 +55,22 @@ class CreateEditLocationViewController: UIViewController {
         saveButton.isEnabled = viewModel.isSaveEnabled
     }
 
+    // MARK: - Private
+
+    private var isNotesPlaceholderEnabled: Bool {
+        return notesTextView.text == notesPlaceholderText && notesTextView.textColor == notesPlaceholderColor
+    }
+
+    func enableNotesTextViewPlaceholder() {
+        notesTextView.text = notesPlaceholderText
+        notesTextView.textColor = notesPlaceholderColor
+    }
+
+    func disableNotesTextViewPlaceholder() {
+        notesTextView.text = nil
+        notesTextView.textColor = notesDefaultTextColor
+    }
+
 }
 
 extension CreateEditLocationViewController: UITextFieldDelegate {
@@ -52,4 +79,21 @@ extension CreateEditLocationViewController: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+
+}
+
+extension CreateEditLocationViewController: UITextViewDelegate {
+
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if isNotesPlaceholderEnabled {
+            disableNotesTextViewPlaceholder()
+        }
+    }
+
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            enableNotesTextViewPlaceholder()
+        }
+    }
+
 }
