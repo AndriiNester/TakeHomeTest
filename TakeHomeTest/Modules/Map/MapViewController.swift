@@ -21,6 +21,8 @@ class MapViewController: UIViewController {
         }
     }
 
+    private let locationManager: CLLocationManager = CLLocationManager()
+
     /// Newly created by user but not yet saved annotation
     private var inProgressAnnotation: MKAnnotation?
 
@@ -35,12 +37,9 @@ class MapViewController: UIViewController {
     @IBOutlet private weak var mapView: MKMapView!
     @IBOutlet private weak var selectedLocationContainerView: UIStackView!
     @IBOutlet private weak var selectedLocationInfoView: UIView!
-    @IBOutlet private weak var selectedLocationActionsView: UIView!
     @IBOutlet private weak var selectedLocationTitleLabel: UILabel!
     @IBOutlet private weak var selectedLocationSubtitleLabel: UILabel!
-    @IBOutlet weak var locationActionButton: UIButton!
-
-    private let locationManager: CLLocationManager = CLLocationManager()
+    @IBOutlet private weak var locationActionButton: UIButton!
 
     private let defaultAnimationDuration = 0.2
 
@@ -48,7 +47,7 @@ class MapViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        applyShadowToLocationInfoView()
+        configureAppearance()
         setupCurrentLocationTracking()
         showScenicPhotoLocations()
     }
@@ -79,6 +78,20 @@ class MapViewController: UIViewController {
         }
     }
 
+    @IBAction func closeInfoViewPressed(_ sender: Any) {
+        setSelectedLocationInfoView(hidden: true)
+        if let annotation = selectedAnnotation {
+            if !isSelectedLocationSaved {
+                // remove marker for not saved location
+                mapView.removeAnnotation(annotation)
+            } else {
+                mapView.deselectAnnotation(annotation, animated: true)
+            }
+        }
+    }
+
+    // MARK: - Private
+
     private func presentDetailsForSelectedLocation() {
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LocationDetailsViewController") as! LocationDetailsViewController
         guard let selectedSceneLocation = selectedAnnotation as? ScenicPhotoLocation else {
@@ -103,8 +116,6 @@ class MapViewController: UIViewController {
         let navigationController = UINavigationController(rootViewController: viewController)
         present(navigationController, animated: true, completion: nil)
     }
-
-    // MARK: - Private
 
     private func setupCurrentLocationTracking() {
         locationManager.delegate = self
@@ -170,19 +181,15 @@ class MapViewController: UIViewController {
         }
     }
 
-    private func setSelectedLocationActionsView(hidden: Bool) {
-        UIView.animate(withDuration: defaultAnimationDuration) {
-            self.selectedLocationActionsView.isHidden = hidden
-            self.selectedLocationContainerView.layoutIfNeeded()
-        }
-    }
-
-    private func applyShadowToLocationInfoView() {
+    private func configureAppearance() {
         selectedLocationInfoView.layer.masksToBounds = false
         selectedLocationInfoView.layer.shadowOffset = CGSize(width: 0, height: -2)
         selectedLocationInfoView.layer.shadowOpacity = 0.3
         selectedLocationInfoView.layer.shadowRadius = 2
         selectedLocationInfoView.layer.shadowColor = UIColor.black.cgColor
+        selectedLocationInfoView.layer.cornerRadius = 8
+
+        locationActionButton.layer.cornerRadius = locationActionButton.frame.height / 2
     }
 
     private func setupSelectedLocationInfoView() {
@@ -195,13 +202,12 @@ class MapViewController: UIViewController {
 
     private func setupLocationInfoView(with location: ScenicPhotoLocation) {
         selectedLocationTitleLabel.text = location.name
+        updateDistanceInfo(to: location.coordinate)
 
-        // TODO: get distance
-        selectedLocationSubtitleLabel.text = "distance"
+        locationActionButton.setTitle(NSLocalizedString("Details", comment: "Details button title"), for: .normal)
 
         UIView.animate(withDuration: defaultAnimationDuration) {
             self.selectedLocationInfoView.isHidden = false
-            self.selectedLocationActionsView.isHidden = false
             self.selectedLocationContainerView.layoutIfNeeded()
         }
     }
@@ -211,15 +217,18 @@ class MapViewController: UIViewController {
             return
         }
         selectedLocationTitleLabel.text = newLocation.title
+        updateDistanceInfo(to: newLocation.coordinate)
 
-        // TODO: get distance
-        selectedLocationSubtitleLabel.text = "distance"
+        locationActionButton.setTitle(NSLocalizedString("Save Location", comment: "Save button title"), for: .normal)
 
         UIView.animate(withDuration: defaultAnimationDuration) {
             self.selectedLocationInfoView.isHidden = false
-            self.selectedLocationActionsView.isHidden = false
             self.selectedLocationContainerView.layoutIfNeeded()
         }
+    }
+
+    private func updateDistanceInfo(to coordinate: CLLocationCoordinate2D) {
+        selectedLocationSubtitleLabel.text = mapView.userLocation.coordinate.formattedDistance(to: coordinate)
     }
 
 }
@@ -250,7 +259,6 @@ extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         if !hasSelectedAnnotations {
             setSelectedLocationInfoView(hidden: true)
-            setSelectedLocationActionsView(hidden: true)
         }
     }
 

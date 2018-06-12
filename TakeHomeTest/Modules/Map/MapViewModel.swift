@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 class MapViewModel {
 
@@ -18,6 +19,10 @@ class MapViewModel {
 
     init(locations: [ScenicPhotoLocation]) {
         self.locations = locations
+    }
+
+    func distanceBetween(coordinate1: CLLocationCoordinate2D, coordinate2: CLLocationCoordinate2D) -> String {
+        return coordinate1.formattedDistance(to: coordinate2)
     }
 
 }
