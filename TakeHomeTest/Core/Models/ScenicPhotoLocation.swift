@@ -9,7 +9,7 @@
 import Foundation
 import MapKit
 
-class ScenicPhotoLocation: NSObject {
+class ScenicPhotoLocation: NSObject, Codable {
 
     let name: String
     let latitude: Double
@@ -21,6 +21,14 @@ class ScenicPhotoLocation: NSObject {
         self.latitude = latitude
         self.longitude = longitude
         self.notes = notes
+    }
+
+}
+
+extension ScenicPhotoLocation: StorageObject {
+
+    var storageId: String {
+        return "\(latitude),\(longitude)"
     }
 
 }

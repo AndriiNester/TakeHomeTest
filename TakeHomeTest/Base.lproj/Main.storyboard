@@ -117,7 +117,7 @@
                                         </constraints>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qII-d8-qY1" userLabel="Actions View">
-                                        <rect key="frame" x="0.0" y="-611" width="375" height="16"/>
+                                        <rect key="frame" x="0.0" y="-603" width="375" height="16"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UTb-Pi-A3r">
                                                 <rect key="frame" x="322" y="8" width="37" height="34"/>
@@ -192,7 +192,7 @@
                                 <rect key="frame" x="16" y="80" width="343" height="20"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                 <connections>
                                     <action selector="nameChanged:" destination="lT7-YG-0B5" eventType="editingChanged" id="862-Lk-QYE"/>
                                     <outlet property="delegate" destination="lT7-YG-0B5" id="OtB-Ji-Jit"/>
@@ -204,16 +204,26 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ahF-4q-VIU">
+                                <rect key="frame" x="16" y="108" width="359" height="2"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="0.1290400256849315" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1.2" id="04n-KK-ijf"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="ahF-4q-VIU" firstAttribute="leading" secondItem="XLe-sM-dFq" secondAttribute="leading" id="0jc-bS-EJn"/>
                             <constraint firstItem="XLe-sM-dFq" firstAttribute="top" secondItem="3ke-Fk-LiT" secondAttribute="top" constant="16" id="EY6-hM-lbH"/>
                             <constraint firstItem="3ke-Fk-LiT" firstAttribute="trailing" secondItem="Anj-MF-gDv" secondAttribute="trailing" constant="10" id="J8q-CA-CtF"/>
                             <constraint firstItem="XLe-sM-dFq" firstAttribute="leading" secondItem="3ke-Fk-LiT" secondAttribute="leading" constant="16" id="PbW-0l-feT"/>
                             <constraint firstItem="3ke-Fk-LiT" firstAttribute="bottom" secondItem="Anj-MF-gDv" secondAttribute="bottom" constant="20" id="SbQ-96-GYF"/>
+                            <constraint firstItem="ahF-4q-VIU" firstAttribute="top" secondItem="XLe-sM-dFq" secondAttribute="bottom" constant="8" id="UQW-9x-HkX"/>
                             <constraint firstItem="Anj-MF-gDv" firstAttribute="leading" secondItem="3ke-Fk-LiT" secondAttribute="leading" constant="10" id="Z2r-mH-CGS"/>
                             <constraint firstItem="Anj-MF-gDv" firstAttribute="top" secondItem="XLe-sM-dFq" secondAttribute="bottom" constant="16" id="bUf-wZ-Yal"/>
                             <constraint firstItem="3ke-Fk-LiT" firstAttribute="trailing" secondItem="XLe-sM-dFq" secondAttribute="trailing" constant="16" id="jmq-Uv-j43"/>
+                            <constraint firstItem="ahF-4q-VIU" firstAttribute="trailing" secondItem="3ke-Fk-LiT" secondAttribute="trailing" id="uTg-B6-eKD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3ke-Fk-LiT"/>
                     </view>
@@ -238,7 +248,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xAV-El-J9W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2177" y="-170"/>
+            <point key="canvasLocation" x="2884" y="-170.46476761619192"/>
         </scene>
         <!--Locations List View Controller-->
         <scene sceneID="2GF-5d-rEx">
@@ -313,7 +323,7 @@
                     <navigationItem key="navigationItem" title="Location" id="ayg-x4-JU3">
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="R4x-iV-fIc">
                             <connections>
-                                <action selector="editPressed:" destination="nbF-Rr-3H7" id="8ds-eb-3HO"/>
+                                <action selector="editPressed:" destination="nbF-Rr-3H7" id="YaN-e3-OgL"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -327,7 +337,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yt0-Eu-YnI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2178" y="526"/>
+            <point key="canvasLocation" x="2092" y="-169"/>
         </scene>
     </scenes>
 </document>

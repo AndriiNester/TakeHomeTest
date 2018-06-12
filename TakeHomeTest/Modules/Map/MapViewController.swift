@@ -12,7 +12,7 @@ import CoreLocation
 
 class MapViewController: UIViewController {
 
-    var viewModel = MapViewModel(defaultLocations: [], userLocations: []) {
+    var viewModel = MapViewModel(locations: []) {
         didSet {
             guard isViewLoaded else {
                 return
@@ -73,17 +73,35 @@ class MapViewController: UIViewController {
 
     @IBAction func locationActionButtonPressed(_ sender: Any) {
         if isSelectedLocationSaved {
-            guard let sceneLocation = selectedAnnotation as? ScenicPhotoLocation else {
-                return
-            }
-            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LocationDetailsViewController") as! LocationDetailsViewController
-            viewController.viewModel = LocationDetailsViewModel(location: sceneLocation)
-            navigationController?.pushViewController(viewController, animated: true)
+            presentDetailsForSelectedLocation()
         } else {
-            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CreateEditLocationViewController") as! CreateEditLocationViewController
-            let navigationController = UINavigationController(rootViewController: viewController)
-            present(navigationController, animated: true, completion: nil)
+            presentCreateNewLocationScreen()
         }
+    }
+
+    private func presentDetailsForSelectedLocation() {
+        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LocationDetailsViewController") as! LocationDetailsViewController
+        guard let selectedSceneLocation = selectedAnnotation as? ScenicPhotoLocation else {
+            return
+        }
+        viewController.viewModel = LocationDetailsViewModel(location: selectedSceneLocation)
+        viewController.modelUpdated = { newLocation in
+            self.replaceAnnotation(selectedSceneLocation, with: newLocation)
+        }
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+
+    private func presentCreateNewLocationScreen() {
+        guard let selectedAnnotation = selectedAnnotation else {
+            return
+        }
+        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CreateEditLocationViewController") as! CreateEditLocationViewController
+        viewController.viewModel = CreateEditLocationViewModel(coordinate: selectedAnnotation.coordinate)
+        viewController.modelUpdated = { newLocation in
+            self.replaceAnnotation(selectedAnnotation, with: newLocation)
+        }
+        let navigationController = UINavigationController(rootViewController: viewController)
+        present(navigationController, animated: true, completion: nil)
     }
 
     // MARK: - Private
@@ -103,7 +121,7 @@ class MapViewController: UIViewController {
         }
 
         mapView.removeAnnotations(mapView.annotations)
-        let allAnnotations = viewModel.defaultLocations + viewModel.userLocations
+        let allAnnotations = viewModel.locations
         mapView.addAnnotations(allAnnotations)
         mapView.showAnnotations(allAnnotations, animated: true)
     }
@@ -117,6 +135,15 @@ class MapViewController: UIViewController {
         annotation.title = name
         inProgressAnnotation = annotation
         mapView.addAnnotation(annotation)
+    }
+
+    private func replaceAnnotation(_ annotation: MKAnnotation, with newAnnotation: MKAnnotation) {
+        self.mapView.removeAnnotation(annotation)
+        self.inProgressAnnotation = newAnnotation
+        self.mapView.addAnnotation(newAnnotation)
+        if let newLocation = newAnnotation as? ScenicPhotoLocation {
+            self.setupLocationInfoView(with: newLocation)
+        }
     }
 
     // MARK: - Helpers
@@ -163,6 +190,10 @@ class MapViewController: UIViewController {
             setupSelectedNewLocationInfoView()
             return
         }
+        setupLocationInfoView(with: location)
+    }
+
+    private func setupLocationInfoView(with location: ScenicPhotoLocation) {
         selectedLocationTitleLabel.text = location.name
 
         // TODO: get distance

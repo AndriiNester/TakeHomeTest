@@ -10,11 +10,13 @@ import UIKit
 
 class CreateEditLocationViewController: UIViewController {
 
-    var viewModel = CreateEditLocationViewModel()
+    var viewModel: CreateEditLocationViewModel!
+
+    var modelUpdated: ((ScenicPhotoLocation) -> Void)?
 
     @IBOutlet private weak var nameTextField: UITextField!
     @IBOutlet private weak var descriptionTextView: UITextView!
-    @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet private weak var saveButton: UIBarButtonItem!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +32,10 @@ class CreateEditLocationViewController: UIViewController {
     }
 
     @IBAction func savePressed(_ sender: Any) {
-        // TODO: save to storage and return back to parent VC
+        viewModel.saveLocation()
+        if let location = viewModel.location {
+            modelUpdated?(location)
+        }
         dismiss(animated: true, completion: nil)
     }
 

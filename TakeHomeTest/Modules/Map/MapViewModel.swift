@@ -10,16 +10,14 @@ import Foundation
 
 class MapViewModel {
 
-    let defaultLocations: [ScenicPhotoLocation]
-    let userLocations: [ScenicPhotoLocation]
+    let locations: [ScenicPhotoLocation]
 
     var hasLocations: Bool {
-        return !defaultLocations.isEmpty || !userLocations.isEmpty
+        return !locations.isEmpty
     }
 
-    init(defaultLocations: [ScenicPhotoLocation], userLocations: [ScenicPhotoLocation]) {
-        self.defaultLocations = defaultLocations
-        self.userLocations = userLocations
+    init(locations: [ScenicPhotoLocation]) {
+        self.locations = locations
     }
 
 }

@@ -10,7 +10,16 @@ import UIKit
 
 class LocationDetailsViewController: UIViewController {
 
-    var viewModel: LocationDetailsViewModel!
+    var viewModel: LocationDetailsViewModel! {
+        didSet {
+            guard isViewLoaded else {
+                return
+            }
+            fillLocationInfo()
+        }
+    }
+
+    var modelUpdated: ((ScenicPhotoLocation) -> Void)?
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
@@ -19,13 +28,26 @@ class LocationDetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        nameLabel.text = viewModel.name
-        subtitleLabel.text = viewModel.subtitle
-        descriptionTextView.text = viewModel.description
+        fillLocationInfo()
     }
 
     @IBAction func editPressed(_ sender: Any) {
+        let editViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CreateEditLocationViewController") as! CreateEditLocationViewController
+        editViewController.viewModel = viewModel.createEditLocationViewModel
+
+        editViewController.modelUpdated = { updatedLocation in
+            self.viewModel = LocationDetailsViewModel(location: updatedLocation)
+            self.modelUpdated?(updatedLocation)
+        }
+
+        let navigationController = UINavigationController(rootViewController: editViewController)
+        present(navigationController, animated: true, completion: nil)
+    }
+
+    private func fillLocationInfo() {
+        nameLabel.text = viewModel.name
+        subtitleLabel.text = viewModel.subtitle
+        descriptionTextView.text = viewModel.description
     }
 
 }

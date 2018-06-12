@@ -16,6 +16,10 @@ class LocationDetailsViewModel {
     var description: String?
     var subtitle: String? // TODO: calculate distance
 
+    var createEditLocationViewModel: CreateEditLocationViewModel {
+        return CreateEditLocationViewModel(location: location)
+    }
+
     init(location: ScenicPhotoLocation) {
         self.location = location
         self.name = location.name

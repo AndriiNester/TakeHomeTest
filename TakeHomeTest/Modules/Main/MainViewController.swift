@@ -25,18 +25,20 @@ class MainViewController: UIViewController {
             guard let _self = self else {
                 return
             }
-            _self.childMapViewController?.viewModel = MapViewModel(defaultLocations: _self.viewModel.defaultLocations, userLocations: _self.viewModel.userLocations)
+            _self.childMapViewController?.viewModel = MapViewModel(locations: _self.viewModel.locations)
         }
 
         viewModel.didFailToFetchDefaultLocations = { _ in
+            // TODO: show error dialog
             NSLog("error when fetching default locations")
         }
 
         viewModel.didFailToFetchUserLocations = { _ in
+            // TODO: show error dialog
             NSLog("error when fetching user locations")
         }
 
-        viewModel.fetchDefaultLocations()
+        viewModel.fetchLocations()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

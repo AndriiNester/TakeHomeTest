@@ -11,6 +11,10 @@
 		490765C620CFC19500814309 /* CreateEditLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490765C420CFC19500814309 /* CreateEditLocationViewController.swift */; };
 		490765C920CFC19F00814309 /* LocationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490765C720CFC19F00814309 /* LocationDetailsViewController.swift */; };
 		490765CA20CFC19F00814309 /* LocationDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490765C820CFC19F00814309 /* LocationDetailsViewModel.swift */; };
+		49184A6E20D05A4400EF11E0 /* UserDefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49184A6B20D05A4300EF11E0 /* UserDefaultsStorage.swift */; };
+		49184A6F20D05A4400EF11E0 /* ScenicPhotoLocationLocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49184A6C20D05A4300EF11E0 /* ScenicPhotoLocationLocalStorage.swift */; };
+		49184A7020D05A4400EF11E0 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49184A6D20D05A4400EF11E0 /* Storage.swift */; };
+		49184A7320D05B6500EF11E0 /* UserDefaults+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49184A7220D05B6500EF11E0 /* UserDefaults+Helpers.swift */; };
 		870C12E95EEA4A7BA59CAA6B /* Pods_TakeHomeTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A3F6E437CD53F56BC386F39 /* Pods_TakeHomeTest.framework */; };
 		97FECCEB64BFD7C388075F46 /* Pods_TakeHomeTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D93E1464A041AD0D189A7E38 /* Pods_TakeHomeTestTests.framework */; };
 		CE13831D20CEB5FD004F1CC1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13831B20CEB5FD004F1CC1 /* MainViewController.swift */; };
@@ -46,6 +50,10 @@
 		490765C420CFC19500814309 /* CreateEditLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEditLocationViewController.swift; sourceTree = "<group>"; };
 		490765C720CFC19F00814309 /* LocationDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDetailsViewController.swift; sourceTree = "<group>"; };
 		490765C820CFC19F00814309 /* LocationDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDetailsViewModel.swift; sourceTree = "<group>"; };
+		49184A6B20D05A4300EF11E0 /* UserDefaultsStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorage.swift; sourceTree = "<group>"; };
+		49184A6C20D05A4300EF11E0 /* ScenicPhotoLocationLocalStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenicPhotoLocationLocalStorage.swift; sourceTree = "<group>"; };
+		49184A6D20D05A4400EF11E0 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		49184A7220D05B6500EF11E0 /* UserDefaults+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Helpers.swift"; sourceTree = "<group>"; };
 		66C189BE2163D6BE7A42BC54 /* Pods-TakeHomeTestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TakeHomeTestTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TakeHomeTestTests/Pods-TakeHomeTestTests.release.xcconfig"; sourceTree = "<group>"; };
 		81CB4CBEB4435221A79941FF /* Pods-TakeHomeTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TakeHomeTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-TakeHomeTest/Pods-TakeHomeTest.release.xcconfig"; sourceTree = "<group>"; };
 		CE13831B20CEB5FD004F1CC1 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +127,24 @@
 			path = "Create Edit Location";
 			sourceTree = "<group>";
 		};
+		49184A6A20D05A2E00EF11E0 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				49184A6C20D05A4300EF11E0 /* ScenicPhotoLocationLocalStorage.swift */,
+				49184A6D20D05A4400EF11E0 /* Storage.swift */,
+				49184A6B20D05A4300EF11E0 /* UserDefaultsStorage.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		49184A7120D05B5800EF11E0 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				49184A7220D05B6500EF11E0 /* UserDefaults+Helpers.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		BECEBCD35CCEC56827BF701D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -134,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				CE13830F20CEB2FA004F1CC1 /* Models */,
+				49184A6A20D05A2E00EF11E0 /* Storage */,
 				CE13831120CEB2FA004F1CC1 /* Locations HTTP Service */,
 			);
 			path = Core;
@@ -212,6 +239,7 @@
 				CEDE173420C69A690057E06E /* AppDelegate.swift */,
 				CE13830E20CEB2FA004F1CC1 /* Core */,
 				CE13831320CEB36B004F1CC1 /* Modules */,
+				49184A7120D05B5800EF11E0 /* Helpers */,
 				CEDE173820C69A690057E06E /* Main.storyboard */,
 				CEDE173B20C69A6B0057E06E /* Assets.xcassets */,
 				CEDE173D20C69A6B0057E06E /* LaunchScreen.storyboard */,
@@ -398,9 +426,13 @@
 				CE13832420CEB692004F1CC1 /* ScenicPhotoLocation.swift in Sources */,
 				CE13832A20CEB8C0004F1CC1 /* LocationsHttpServiceProtocol.swift in Sources */,
 				490765C520CFC19500814309 /* CreateEditLocationViewModel.swift in Sources */,
+				49184A6E20D05A4400EF11E0 /* UserDefaultsStorage.swift in Sources */,
 				CE13832120CEB64C004F1CC1 /* MapViewController.swift in Sources */,
+				49184A7320D05B6500EF11E0 /* UserDefaults+Helpers.swift in Sources */,
+				49184A6F20D05A4400EF11E0 /* ScenicPhotoLocationLocalStorage.swift in Sources */,
 				CE13831E20CEB5FD004F1CC1 /* MainViewModel.swift in Sources */,
 				490765C620CFC19500814309 /* CreateEditLocationViewController.swift in Sources */,
+				49184A7020D05A4400EF11E0 /* Storage.swift in Sources */,
 				CE13832220CEB64C004F1CC1 /* MapViewModel.swift in Sources */,
 				CE13832C20CEB8C0004F1CC1 /* LocationsFakeHttpService.swift in Sources */,
 			);

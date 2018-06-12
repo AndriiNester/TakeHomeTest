@@ -16,34 +16,44 @@ class MainViewModel {
 
     private let httpService: LocationsHTTPService
 
-    private(set) var defaultLocations: [ScenicPhotoLocation] = [] {
+    private(set) var locations: [ScenicPhotoLocation] = [] {
         didSet {
             locationsUpdated?()
         }
     }
 
-    private(set) var userLocations: [ScenicPhotoLocation] = [] {
-        didSet {
-            locationsUpdated?()
-        }
-    }
+    private let storage = ScenicPhotoLocationLocalStorage()
 
     init(httpService: LocationsHTTPService = LocationsRealHTTPService()) {
         self.httpService = httpService
     }
 
-    func fetchDefaultLocations() {
-        httpService.getScenicPhotoLocations { [weak self] locations, error in
-            guard error == nil else {
-                self?.didFailToFetchDefaultLocations?(error)
-                return
-            }
-            self?.defaultLocations = locations
+    func fetchLocations() {
+        if UserDefaults.isFirstLaunch {
+            fetchDefaultLocations()
+        } else {
+            fetchStoredLocations()
         }
     }
 
-    func fetchUserLocations() {
-        fatalError("not implemented yet")
+    func fetchDefaultLocations() {
+        httpService.getScenicPhotoLocations { [weak self] locations, error in
+            guard let _self = self else {
+                return
+            }
+            guard error == nil else {
+                _self.didFailToFetchDefaultLocations?(error)
+                return
+            }
+            _self.locations = locations
+            locations.forEach {
+                _self.storage.createLocation($0)
+            }
+        }
+    }
+
+    func fetchStoredLocations() {
+        locations = storage.getAllLocations()
     }
 
 }
