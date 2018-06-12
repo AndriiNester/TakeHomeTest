@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		490765C520CFC19500814309 /* CreateEditLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490765C320CFC19500814309 /* CreateEditLocationViewModel.swift */; };
+		490765C620CFC19500814309 /* CreateEditLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490765C420CFC19500814309 /* CreateEditLocationViewController.swift */; };
+		490765C920CFC19F00814309 /* LocationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490765C720CFC19F00814309 /* LocationDetailsViewController.swift */; };
+		490765CA20CFC19F00814309 /* LocationDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490765C820CFC19F00814309 /* LocationDetailsViewModel.swift */; };
 		870C12E95EEA4A7BA59CAA6B /* Pods_TakeHomeTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A3F6E437CD53F56BC386F39 /* Pods_TakeHomeTest.framework */; };
 		97FECCEB64BFD7C388075F46 /* Pods_TakeHomeTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D93E1464A041AD0D189A7E38 /* Pods_TakeHomeTestTests.framework */; };
 		CE13831D20CEB5FD004F1CC1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13831B20CEB5FD004F1CC1 /* MainViewController.swift */; };
@@ -38,6 +42,10 @@
 /* Begin PBXFileReference section */
 		0B18126FC5E7C6AC36F10272 /* Pods-TakeHomeTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TakeHomeTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TakeHomeTest/Pods-TakeHomeTest.debug.xcconfig"; sourceTree = "<group>"; };
 		2A3F6E437CD53F56BC386F39 /* Pods_TakeHomeTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TakeHomeTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		490765C320CFC19500814309 /* CreateEditLocationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEditLocationViewModel.swift; sourceTree = "<group>"; };
+		490765C420CFC19500814309 /* CreateEditLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEditLocationViewController.swift; sourceTree = "<group>"; };
+		490765C720CFC19F00814309 /* LocationDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDetailsViewController.swift; sourceTree = "<group>"; };
+		490765C820CFC19F00814309 /* LocationDetailsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDetailsViewModel.swift; sourceTree = "<group>"; };
 		66C189BE2163D6BE7A42BC54 /* Pods-TakeHomeTestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TakeHomeTestTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TakeHomeTestTests/Pods-TakeHomeTestTests.release.xcconfig"; sourceTree = "<group>"; };
 		81CB4CBEB4435221A79941FF /* Pods-TakeHomeTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TakeHomeTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-TakeHomeTest/Pods-TakeHomeTest.release.xcconfig"; sourceTree = "<group>"; };
 		CE13831B20CEB5FD004F1CC1 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -93,6 +101,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		490765C120CFC17700814309 /* Locations Details */ = {
+			isa = PBXGroup;
+			children = (
+				490765C720CFC19F00814309 /* LocationDetailsViewController.swift */,
+				490765C820CFC19F00814309 /* LocationDetailsViewModel.swift */,
+			);
+			path = "Locations Details";
+			sourceTree = "<group>";
+		};
+		490765C220CFC17F00814309 /* Create Edit Location */ = {
+			isa = PBXGroup;
+			children = (
+				490765C420CFC19500814309 /* CreateEditLocationViewController.swift */,
+				490765C320CFC19500814309 /* CreateEditLocationViewModel.swift */,
+			);
+			path = "Create Edit Location";
+			sourceTree = "<group>";
+		};
 		BECEBCD35CCEC56827BF701D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +162,8 @@
 			children = (
 				CE13831920CEB36B004F1CC1 /* Main */,
 				CE13831520CEB36B004F1CC1 /* Map */,
+				490765C120CFC17700814309 /* Locations Details */,
+				490765C220CFC17F00814309 /* Create Edit Location */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -362,13 +390,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				490765C920CFC19F00814309 /* LocationDetailsViewController.swift in Sources */,
 				CE13832B20CEB8C0004F1CC1 /* LocationsHttpService.swift in Sources */,
 				CE13831D20CEB5FD004F1CC1 /* MainViewController.swift in Sources */,
 				CEDE173520C69A690057E06E /* AppDelegate.swift in Sources */,
+				490765CA20CFC19F00814309 /* LocationDetailsViewModel.swift in Sources */,
 				CE13832420CEB692004F1CC1 /* ScenicPhotoLocation.swift in Sources */,
 				CE13832A20CEB8C0004F1CC1 /* LocationsHttpServiceProtocol.swift in Sources */,
+				490765C520CFC19500814309 /* CreateEditLocationViewModel.swift in Sources */,
 				CE13832120CEB64C004F1CC1 /* MapViewController.swift in Sources */,
 				CE13831E20CEB5FD004F1CC1 /* MainViewModel.swift in Sources */,
+				490765C620CFC19500814309 /* CreateEditLocationViewController.swift in Sources */,
 				CE13832220CEB64C004F1CC1 /* MapViewModel.swift in Sources */,
 				CE13832C20CEB8C0004F1CC1 /* LocationsFakeHttpService.swift in Sources */,
 			);

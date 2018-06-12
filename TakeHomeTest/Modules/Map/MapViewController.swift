@@ -72,6 +72,18 @@ class MapViewController: UIViewController {
     }
 
     @IBAction func locationActionButtonPressed(_ sender: Any) {
+        if isSelectedLocationSaved {
+            guard let sceneLocation = selectedAnnotation as? ScenicPhotoLocation else {
+                return
+            }
+            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LocationDetailsViewController") as! LocationDetailsViewController
+            viewController.viewModel = LocationDetailsViewModel(location: sceneLocation)
+            navigationController?.pushViewController(viewController, animated: true)
+        } else {
+            let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CreateEditLocationViewController") as! CreateEditLocationViewController
+            let navigationController = UINavigationController(rootViewController: viewController)
+            present(navigationController, animated: true, completion: nil)
+        }
     }
 
     // MARK: - Private

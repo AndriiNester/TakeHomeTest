@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xw6-w1-tqh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xw6-w1-tqh">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -117,7 +117,7 @@
                                         </constraints>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qII-d8-qY1" userLabel="Actions View">
-                                        <rect key="frame" x="0.0" y="-596" width="375" height="16"/>
+                                        <rect key="frame" x="0.0" y="-611" width="375" height="16"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UTb-Pi-A3r">
                                                 <rect key="frame" x="322" y="8" width="37" height="34"/>
@@ -180,6 +180,66 @@
             </objects>
             <point key="canvasLocation" x="1197.5999999999999" y="-198.35082458770617"/>
         </scene>
+        <!--New Location-->
+        <scene sceneID="iiq-hV-OGk">
+            <objects>
+                <viewController storyboardIdentifier="CreateEditLocationViewController" id="lT7-YG-0B5" customClass="CreateEditLocationViewController" customModule="TakeHomeTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LPa-tc-xnn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter location name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XLe-sM-dFq">
+                                <rect key="frame" x="16" y="80" width="343" height="20"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <action selector="nameChanged:" destination="lT7-YG-0B5" eventType="editingChanged" id="862-Lk-QYE"/>
+                                    <outlet property="delegate" destination="lT7-YG-0B5" id="OtB-Ji-Jit"/>
+                                </connections>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Anj-MF-gDv">
+                                <rect key="frame" x="10" y="116" width="355" height="531"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="XLe-sM-dFq" firstAttribute="top" secondItem="3ke-Fk-LiT" secondAttribute="top" constant="16" id="EY6-hM-lbH"/>
+                            <constraint firstItem="3ke-Fk-LiT" firstAttribute="trailing" secondItem="Anj-MF-gDv" secondAttribute="trailing" constant="10" id="J8q-CA-CtF"/>
+                            <constraint firstItem="XLe-sM-dFq" firstAttribute="leading" secondItem="3ke-Fk-LiT" secondAttribute="leading" constant="16" id="PbW-0l-feT"/>
+                            <constraint firstItem="3ke-Fk-LiT" firstAttribute="bottom" secondItem="Anj-MF-gDv" secondAttribute="bottom" constant="20" id="SbQ-96-GYF"/>
+                            <constraint firstItem="Anj-MF-gDv" firstAttribute="leading" secondItem="3ke-Fk-LiT" secondAttribute="leading" constant="10" id="Z2r-mH-CGS"/>
+                            <constraint firstItem="Anj-MF-gDv" firstAttribute="top" secondItem="XLe-sM-dFq" secondAttribute="bottom" constant="16" id="bUf-wZ-Yal"/>
+                            <constraint firstItem="3ke-Fk-LiT" firstAttribute="trailing" secondItem="XLe-sM-dFq" secondAttribute="trailing" constant="16" id="jmq-Uv-j43"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="3ke-Fk-LiT"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="New Location" id="cS8-qh-JCP">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="lFs-AF-T8q">
+                            <connections>
+                                <action selector="cancelPressed:" destination="lT7-YG-0B5" id="f1d-kR-8gJ"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="seZ-02-vdS">
+                            <connections>
+                                <action selector="savePressed:" destination="lT7-YG-0B5" id="asC-rt-qOC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="descriptionTextView" destination="Anj-MF-gDv" id="onR-CE-agk"/>
+                        <outlet property="nameTextField" destination="XLe-sM-dFq" id="tAe-Zc-kPY"/>
+                        <outlet property="saveButton" destination="seZ-02-vdS" id="cNS-PT-NE7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xAV-El-J9W" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2177" y="-170"/>
+        </scene>
         <!--Locations List View Controller-->
         <scene sceneID="2GF-5d-rEx">
             <objects>
@@ -207,6 +267,67 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SyH-Z2-wd2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1198" y="526"/>
+        </scene>
+        <!--Location-->
+        <scene sceneID="aRJ-Gb-XwF">
+            <objects>
+                <viewController storyboardIdentifier="LocationDetailsViewController" id="nbF-Rr-3H7" customClass="LocationDetailsViewController" customModule="TakeHomeTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zjh-Ge-yQh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EF9-yR-gbh" userLabel="Name">
+                                <rect key="frame" x="16" y="16" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pw9-Yt-DOM" userLabel="Subtitle">
+                                <rect key="frame" x="16" y="37" width="343" height="14.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kij-4U-pzf" userLabel="Notes">
+                                <rect key="frame" x="10" y="59" width="355" height="524"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="kij-4U-pzf" firstAttribute="leading" secondItem="462-rv-JsJ" secondAttribute="leading" constant="10" id="DTj-wW-8Iy"/>
+                            <constraint firstItem="462-rv-JsJ" firstAttribute="trailing" secondItem="EF9-yR-gbh" secondAttribute="trailing" constant="16" id="JMx-cy-9uu"/>
+                            <constraint firstItem="EF9-yR-gbh" firstAttribute="top" secondItem="462-rv-JsJ" secondAttribute="top" constant="16" id="MSP-QF-U76"/>
+                            <constraint firstItem="462-rv-JsJ" firstAttribute="trailing" secondItem="kij-4U-pzf" secondAttribute="trailing" constant="10" id="Mo2-GC-KbR"/>
+                            <constraint firstItem="Pw9-Yt-DOM" firstAttribute="leading" secondItem="EF9-yR-gbh" secondAttribute="leading" id="OXM-VC-smX"/>
+                            <constraint firstItem="EF9-yR-gbh" firstAttribute="leading" secondItem="462-rv-JsJ" secondAttribute="leading" constant="16" id="R7f-4X-rFB"/>
+                            <constraint firstItem="462-rv-JsJ" firstAttribute="bottom" secondItem="kij-4U-pzf" secondAttribute="bottom" constant="20" id="dqd-S5-ezl"/>
+                            <constraint firstItem="Pw9-Yt-DOM" firstAttribute="trailing" secondItem="EF9-yR-gbh" secondAttribute="trailing" id="mIS-gu-ICN"/>
+                            <constraint firstItem="Pw9-Yt-DOM" firstAttribute="top" secondItem="EF9-yR-gbh" secondAttribute="bottom" id="rZr-vd-wFW"/>
+                            <constraint firstItem="kij-4U-pzf" firstAttribute="top" secondItem="Pw9-Yt-DOM" secondAttribute="bottom" constant="8" id="whl-nD-5eV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="462-rv-JsJ"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Location" id="ayg-x4-JU3">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="R4x-iV-fIc">
+                            <connections>
+                                <action selector="editPressed:" destination="nbF-Rr-3H7" id="8ds-eb-3HO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="descriptionTextView" destination="kij-4U-pzf" id="aOn-gr-5TU"/>
+                        <outlet property="editButton" destination="R4x-iV-fIc" id="uPV-Cr-wyT"/>
+                        <outlet property="nameLabel" destination="EF9-yR-gbh" id="QtX-n9-uL4"/>
+                        <outlet property="subtitleLabel" destination="Pw9-Yt-DOM" id="5V4-ki-Exe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yt0-Eu-YnI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2178" y="526"/>
         </scene>
     </scenes>
 </document>
