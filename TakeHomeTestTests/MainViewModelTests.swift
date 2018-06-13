@@ -13,7 +13,7 @@ class MainViewModelTests: XCTestCase {
 
     var viewModel: MainViewModel!
     var fakeHttpService: LocationsFakeHttpService!
-    var fakeStorage: ScenicPhotoLocationFakeStorage!
+    var fakeStorage: FakeStorage!
     var fakeUserDefaults: UserDefaults!
 
     override func setUp() {
@@ -21,7 +21,7 @@ class MainViewModelTests: XCTestCase {
         fakeHttpService = LocationsFakeHttpService()
         fakeUserDefaults = UserDefaults(suiteName: "fake")
         fakeUserDefaults.removePersistentDomain(forName: "fake")
-        fakeStorage = ScenicPhotoLocationFakeStorage()
+        fakeStorage = FakeStorage()
         viewModel = MainViewModel(httpService: fakeHttpService, storage: fakeStorage, userDefaults: fakeUserDefaults)
     }
 
@@ -31,6 +31,7 @@ class MainViewModelTests: XCTestCase {
 
     func testLocationsUpdatedClosureCalledOnPropertyUpdate() {
         let updateExpectation = expectation(description: "locationUpdate")
+        updateExpectation.expectedFulfillmentCount = 2
         viewModel.locationsUpdated = {
             updateExpectation.fulfill()
         }
@@ -44,12 +45,10 @@ class MainViewModelTests: XCTestCase {
         XCTAssertTrue(fakeHttpService.isRequestScenicPhotoLocationsCalled)
     }
 
-    func testFetchLocationsFetchesStoredLocationsEverytimeExeptFirstLaunch() {
-        fakeStorage.isAllLocationsCalled = false
+    func testFetchLocationsFetchesStoredLocations() {
+        fakeStorage.isAllObjectsCalled = false
         viewModel.fetchLocations()
-        XCTAssertFalse(fakeStorage.isAllLocationsCalled)
-        viewModel.fetchLocations()
-        XCTAssertTrue(fakeStorage.isAllLocationsCalled)
+        XCTAssertTrue(fakeStorage.isAllObjectsCalled)
     }
 
     func testDidFailToFetchDefaultLocationClosureCalled() {

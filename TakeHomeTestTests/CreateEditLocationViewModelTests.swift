@@ -12,11 +12,11 @@ import CoreLocation
 
 class CreateEditLocationViewModelTests: XCTestCase {
 
-    var fakeStorage: ScenicPhotoLocationFakeStorage!
+    var fakeStorage: FakeStorage!
 
     override func setUp() {
         super.setUp()
-        fakeStorage = ScenicPhotoLocationFakeStorage()
+        fakeStorage = FakeStorage()
     }
 
     override func tearDown() {
@@ -62,37 +62,37 @@ class CreateEditLocationViewModelTests: XCTestCase {
     func testSaveLocationDoesNothingWhenNameIsNil() {
         let viewModel = CreateEditLocationViewModel(coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0), storage: fakeStorage)
         viewModel.name = nil
-        fakeStorage.isCreateLocationCalled = false
-        fakeStorage.isUpdateLocationCalled = false
+        fakeStorage.isCreateCalled = false
+        fakeStorage.isUpdateCalled = false
 
         viewModel.saveLocation()
 
-        XCTAssertFalse(fakeStorage.isCreateLocationCalled)
-        XCTAssertFalse(fakeStorage.isUpdateLocationCalled)
+        XCTAssertFalse(fakeStorage.isCreateCalled)
+        XCTAssertFalse(fakeStorage.isUpdateCalled)
     }
 
     func testSaveLocationUpdatesLocationsWhenEditMode() {
         let location = ScenicPhotoLocation(name: "Name", latitude: 1, longitude: 2, notes: nil)
         let viewModel = CreateEditLocationViewModel(location: location, storage: fakeStorage)
-        fakeStorage.isCreateLocationCalled = false
-        fakeStorage.isUpdateLocationCalled = false
+        fakeStorage.isCreateCalled = false
+        fakeStorage.isUpdateCalled = false
 
         viewModel.saveLocation()
 
-        XCTAssertFalse(fakeStorage.isCreateLocationCalled)
-        XCTAssertTrue(fakeStorage.isUpdateLocationCalled)
+        XCTAssertFalse(fakeStorage.isCreateCalled)
+        XCTAssertTrue(fakeStorage.isUpdateCalled)
     }
 
     func testSaveLocationCreatesNewLocationWhenCreateMode() {
         let viewModel = CreateEditLocationViewModel(coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0), storage: fakeStorage)
         viewModel.name = "Name"
-        fakeStorage.isCreateLocationCalled = false
-        fakeStorage.isUpdateLocationCalled = false
+        fakeStorage.isCreateCalled = false
+        fakeStorage.isUpdateCalled = false
 
         viewModel.saveLocation()
 
-        XCTAssertTrue(fakeStorage.isCreateLocationCalled)
-        XCTAssertFalse(fakeStorage.isUpdateLocationCalled)
+        XCTAssertTrue(fakeStorage.isCreateCalled)
+        XCTAssertFalse(fakeStorage.isUpdateCalled)
     }
 
 }

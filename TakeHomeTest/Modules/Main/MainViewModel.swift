@@ -14,7 +14,7 @@ class MainViewModel {
     var didFailToFetchDefaultLocations: ((Error?) -> Void)?
 
     private let httpService: LocationsHTTPService
-    private let storage: ScenicPhotoLocationStorage
+    private let storage: Storage
     private let userDefaults: UserDefaults
 
     private(set) var locations: [ScenicPhotoLocation] = [] {
@@ -23,18 +23,22 @@ class MainViewModel {
         }
     }
 
-    init(httpService: LocationsHTTPService = LocationsRealHTTPService(), storage: ScenicPhotoLocationStorage = ScenicPhotoLocationLocalStorage(), userDefaults: UserDefaults = UserDefaults.standard) {
+    init(httpService: LocationsHTTPService = LocationsRealHTTPService(), storage: Storage = UserDefaultsStorage(), userDefaults: UserDefaults = UserDefaults.standard) {
         self.httpService = httpService
         self.storage = storage
         self.userDefaults = userDefaults
     }
 
     func fetchLocations() {
+        fetchStoredLocations()
+        // fetch default only one time and save them into storage for future use
         if !userDefaults.hasFetchedDefaultLocations {
             fetchDefaultLocations()
-        } else {
-            fetchStoredLocations()
         }
+    }
+
+    func fetchStoredLocations() {
+        locations = storage.allObjects()
     }
 
     func fetchDefaultLocations() {
@@ -46,15 +50,12 @@ class MainViewModel {
                 _self.didFailToFetchDefaultLocations?(error)
                 return
             }
-            _self.locations = locations ?? []
+            _self.locations += locations ?? []
             locations?.forEach {
-                _self.storage.createLocation($0)
+                _self.storage.create($0)
             }
+            _self.userDefaults.hasFetchedDefaultLocations = true
         }
-    }
-
-    func fetchStoredLocations() {
-        locations = storage.getAllLocations()
     }
 
 }

@@ -10,13 +10,15 @@ import Foundation
 
 extension UserDefaults {
 
+    private static let hasFetchedDefaultLocationsFlag = "hasFetchedDefaultLocations"
+
     var hasFetchedDefaultLocations: Bool {
-        let hasFetchedDefaultLocationsFlag = "hasFetchedDefaultLocations"
-        let hasFetched = self.bool(forKey: hasFetchedDefaultLocationsFlag)
-        if !hasFetched {
-            self.set(true, forKey: hasFetchedDefaultLocationsFlag)
+        get {
+            return self.bool(forKey: UserDefaults.hasFetchedDefaultLocationsFlag)
         }
-        return hasFetched
+        set {
+            self.set(newValue, forKey: UserDefaults.hasFetchedDefaultLocationsFlag)
+        }
     }
 
 }

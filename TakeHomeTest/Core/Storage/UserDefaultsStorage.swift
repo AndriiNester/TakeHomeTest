@@ -14,42 +14,39 @@ class UserDefaultsStorage: Storage {
 
     private static let locationsKey = "locations"
 
-    func get<T: StorageObject>(byId id: String) -> T? {
-        let locationsEncoded = userDefaults.object(forKey: UserDefaultsStorage.locationsKey) as? [String: Any] ?? [:]
-        let decoder = JSONDecoder()
-        guard let locationJson = locationsEncoded[id] as? Data else {
+    func object<T: StorageObject>(withId id: String) -> T? {
+        guard let locationJson = locationsDictionary[id] as? Data else {
             return nil
         }
-        return try? decoder.decode(T.self, from: locationJson)
+        return try? JSONDecoder().decode(T.self, from: locationJson)
     }
 
-    func getAll<T: StorageObject>() -> [T] {
-        let locationsEncoded = userDefaults.object(forKey: UserDefaultsStorage.locationsKey) as? [String: Any] ?? [:]
+    func allObjects<T: StorageObject>() -> [T] {
         let decoder = JSONDecoder()
-        let locations = locationsEncoded.map { element -> T? in
+        return locationsDictionary.map { element -> T? in
             let (_, value) = element
             guard let data = value as? Data else {
                 return nil
             }
             return try? decoder.decode(T.self, from: data)
             }.compactMap { $0 }
-        return locations
     }
 
     func create<T: StorageObject>(_ entity: T) {
-        let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(entity) {
-            var locations = locationsDictionary
-            locations[entity.storageId] = encoded
-            userDefaults.set(locations, forKey: UserDefaultsStorage.locationsKey)
+        guard let encoded = try? JSONEncoder().encode(entity) else {
+            return
         }
+        var locations = locationsDictionary
+        locations[entity.storageId] = encoded
+        userDefaults.set(locations, forKey: UserDefaultsStorage.locationsKey)
     }
 
     func update<T: StorageObject>(_ entity: T) {
-        if locationsDictionary[entity.storageId] != nil {
-            // overriding the entity
-            create(entity)
+        guard locationsDictionary[entity.storageId] != nil else {
+            return
         }
+        // overriding the entity
+        create(entity)
     }
 
     private var locationsDictionary: [String: Any] {

@@ -29,9 +29,9 @@ class CreateEditLocationViewModel {
         }
     }
 
-    private let storage: ScenicPhotoLocationStorage
+    private let storage: Storage
 
-    init(location: ScenicPhotoLocation, storage: ScenicPhotoLocationStorage = ScenicPhotoLocationLocalStorage()) {
+    init(location: ScenicPhotoLocation, storage: Storage = UserDefaultsStorage()) {
         self.location = location
         self.storage = storage
         self.name = location.name
@@ -39,30 +39,31 @@ class CreateEditLocationViewModel {
         self.coordinate = location.coordinate
     }
 
-    init(coordinate: CLLocationCoordinate2D, storage: ScenicPhotoLocationStorage = ScenicPhotoLocationLocalStorage()) {
+    init(coordinate: CLLocationCoordinate2D, storage: Storage = UserDefaultsStorage()) {
         self.coordinate = coordinate
         self.storage = storage
     }
 
     func saveLocation() {
+        if location != nil {
+            saveLocation(withMethod: storage.update)
+        } else {
+            saveLocation(withMethod: storage.create)
+        }
+    }
+
+    // MARK: - Private
+
+    private func saveLocation(withMethod storageMethod: ((ScenicPhotoLocation) -> Void)) {
         guard let name = name else {
             return
         }
-        if let existingLocation = location {
-            let updatedLocation = ScenicPhotoLocation(name: name,
-                                                      latitude: existingLocation.latitude,
-                                                      longitude: existingLocation.longitude,
-                                                      notes: notes)
-            storage.updateLocation(updatedLocation)
-            location = updatedLocation
-        } else {
-            let newLocation = ScenicPhotoLocation(name: name,
-                                                  latitude: coordinate.latitude,
-                                                  longitude: coordinate.longitude,
-                                                  notes: notes)
-            storage.createLocation(newLocation)
-            location = newLocation
-        }
+        let newLocation = ScenicPhotoLocation(name: name,
+                                              latitude: coordinate.latitude,
+                                              longitude: coordinate.longitude,
+                                              notes: notes)
+        storageMethod(newLocation)
+        location = newLocation
     }
 
 }

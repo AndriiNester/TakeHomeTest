@@ -13,8 +13,8 @@ protocol StorageObject: Codable {
 }
 
 protocol Storage {
-    func get<T: StorageObject>(byId id: String) -> T?
-    func getAll<T: StorageObject>() -> [T]
+    func object<T: StorageObject>(withId id: String) -> T?
+    func allObjects<T: StorageObject>() -> [T]
     func create<T: StorageObject>(_ entity: T)
     func update<T: StorageObject>(_ entity: T)
 }
