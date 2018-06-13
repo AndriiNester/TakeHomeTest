@@ -14,6 +14,6 @@ protocol LocationsHTTPService {
      Fetches list of default scenic photo locations
      - parameter completion: Result of the request is sent to this completion handler
      */
-    func getScenicPhotoLocations(completion: @escaping (([ScenicPhotoLocation], Error?) -> Void))
+    func requestScenicPhotoLocations(completion: @escaping (([ScenicPhotoLocation]?, Error?) -> Void))
 
 }

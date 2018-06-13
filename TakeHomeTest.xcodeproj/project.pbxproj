@@ -218,9 +218,9 @@
 		CE13831120CEB2FA004F1CC1 /* Locations HTTP Service */ = {
 			isa = PBXGroup;
 			children = (
-				CE13832920CEB8C0004F1CC1 /* LocationsFakeHttpService.swift */,
-				CE13832820CEB8C0004F1CC1 /* LocationsHttpService.swift */,
 				CE13832720CEB8BF004F1CC1 /* LocationsHttpServiceProtocol.swift */,
+				CE13832820CEB8C0004F1CC1 /* LocationsHttpService.swift */,
+				CE13832920CEB8C0004F1CC1 /* LocationsFakeHttpService.swift */,
 			);
 			path = "Locations HTTP Service";
 			sourceTree = "<group>";

@@ -11,28 +11,31 @@ import Alamofire
 
 class LocationsRealHTTPService: LocationsHTTPService {
 
-    private static let host = "http://bit.ly"
+    let host: String
 
-    func getScenicPhotoLocations(completion: @escaping (([ScenicPhotoLocation], Error?) -> Void)) {
-        Alamofire.request("\(LocationsRealHTTPService.host)/test-locations").responseJSON { response in
+    private static let defaultHost = "http://bit.ly"
+
+    private struct LocationsResponse: Codable {
+        var locations: [ScenicPhotoLocation] = []
+    }
+
+    init(host: String = LocationsRealHTTPService.defaultHost) {
+        self.host = host
+    }
+
+    func requestScenicPhotoLocations(completion: @escaping (([ScenicPhotoLocation]?, Error?) -> Void)) {
+        Alamofire.request("\(host)/test-locations").responseJSON { response in
             guard response.error == nil else {
                 completion([], response.error)
                 return
             }
-            guard let json = response.result.value as? [String: Any],
-                let locationsJson = json["locations"] as? [[String: Any]] else {
-                completion([], nil)
+
+            guard let data = response.data else {
+                completion(nil, nil)
                 return
             }
-            let locations: [ScenicPhotoLocation] = locationsJson.map {
-                    guard let name = $0["name"] as? String,
-                        let latitude = $0["lat"] as? Double,
-                        let longitude = $0["lng"] as? Double else {
-                        return nil
-                    }
-                return ScenicPhotoLocation(name: name, latitude: latitude, longitude: longitude, notes: nil)
-                }.compactMap({ $0 })
-            completion(locations, nil)
+            let locationsResponse = try? JSONDecoder().decode(LocationsResponse.self, from: data)
+            completion(locationsResponse?.locations, nil)
         }
     }
 

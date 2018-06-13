@@ -18,11 +18,11 @@ class LocationsFakeHttpService: LocationsHTTPService {
     ]
 
     var returnError: Error?
-    var isGetScenicPhotoLocationsCalled: Bool = false
+    var isRequestScenicPhotoLocationsCalled: Bool = false
 
-    func getScenicPhotoLocations(completion: @escaping (([ScenicPhotoLocation], Error?) -> Void)) {
-        isGetScenicPhotoLocationsCalled = true
-        completion(returnCoordinates ?? [], returnError)
+    func requestScenicPhotoLocations(completion: @escaping (([ScenicPhotoLocation]?, Error?) -> Void)) {
+        isRequestScenicPhotoLocationsCalled = true
+        completion(returnCoordinates, returnError)
     }
 
 }

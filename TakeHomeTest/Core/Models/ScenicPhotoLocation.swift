@@ -23,6 +23,13 @@ class ScenicPhotoLocation: NSObject, Codable {
         self.notes = notes
     }
 
+    enum CodingKeys: String, CodingKey {
+        case name
+        case latitude = "lat"
+        case longitude = "lng"
+        case notes
+    }
+
 }
 
 extension ScenicPhotoLocation: StorageObject {

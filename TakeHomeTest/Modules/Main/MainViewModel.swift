@@ -38,7 +38,7 @@ class MainViewModel {
     }
 
     func fetchDefaultLocations() {
-        httpService.getScenicPhotoLocations { [weak self] locations, error in
+        httpService.requestScenicPhotoLocations { [weak self] locations, error in
             guard let _self = self else {
                 return
             }
@@ -46,8 +46,8 @@ class MainViewModel {
                 _self.didFailToFetchDefaultLocations?(error)
                 return
             }
-            _self.locations = locations
-            locations.forEach {
+            _self.locations = locations ?? []
+            locations?.forEach {
                 _self.storage.createLocation($0)
             }
         }

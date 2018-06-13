@@ -39,17 +39,17 @@ class MainViewModelTests: XCTestCase {
     }
 
     func testFetchLocationsFetchesDefaultLocationsAtFirstLaunch() {
-        fakeHttpService.isGetScenicPhotoLocationsCalled = false
+        fakeHttpService.isRequestScenicPhotoLocationsCalled = false
         viewModel.fetchLocations()
-        XCTAssertTrue(fakeHttpService.isGetScenicPhotoLocationsCalled)
+        XCTAssertTrue(fakeHttpService.isRequestScenicPhotoLocationsCalled)
     }
 
     func testFetchLocationsFetchesStoredLocationsEverytimeExeptFirstLaunch() {
-        fakeStorage.isGetAllLocationsCalled = false
+        fakeStorage.isAllLocationsCalled = false
         viewModel.fetchLocations()
-        XCTAssertFalse(fakeStorage.isGetAllLocationsCalled)
+        XCTAssertFalse(fakeStorage.isAllLocationsCalled)
         viewModel.fetchLocations()
-        XCTAssertTrue(fakeStorage.isGetAllLocationsCalled)
+        XCTAssertTrue(fakeStorage.isAllLocationsCalled)
     }
 
     func testDidFailToFetchDefaultLocationClosureCalled() {
