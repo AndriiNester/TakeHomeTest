@@ -12,6 +12,7 @@ class CreateEditLocationViewController: UIViewController {
 
     var viewModel: CreateEditLocationViewModel!
 
+    // TODO: I would like to have a view model to bear the responsibility to update a corresponding view just like the MVVM pattern implies, however due to the time constraints I chose the solution with the modelUpdated closure implemented below. Ideally I would use the data binding approach here and bind the view and view model. Alternatively, it is possible to use the unidirectional flow approach when our app has a state and certain actions that update the state where the view models observe the state changes and update the view accordingly (see ReSwift https://github.com/ReSwift/ReSwift)
     var modelUpdated: ((ScenicPhotoLocation) -> Void)?
 
     @IBOutlet private weak var nameTextField: UITextField!
