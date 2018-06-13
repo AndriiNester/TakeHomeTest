@@ -8,35 +8,30 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class MainViewController: UIPageViewController {
 
     let viewModel = MainViewModel()
 
-    private var childViewController: UIViewController? {
-        willSet {
-            guard let childVC = childViewController else { return }
-            removeChildViewController(childVC)
-        }
-        didSet {
-            guard let childVC = childViewController, let containerView = containerView else { return }
-            addChildViewController(childVC, toContainerView: containerView)
-        }
-    }
-
-    private var childMapViewController: MapViewController?
-
     @IBOutlet private weak var tabSegmentedControl: UISegmentedControl!
-    @IBOutlet private weak var containerView: UIView!
+
+    private var mainViewControllers: [UIViewController] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupViewControllers()
+
         viewModel.locationsUpdated = { [weak self] in
-            NSLog("locations updated")
             guard let _self = self else {
                 return
             }
-            _self.childMapViewController?.viewModel = MapViewModel(locations: _self.viewModel.locations)
+            _self.mainViewControllers.forEach {
+                if let mapViewController = $0 as? MapViewController {
+                    mapViewController.viewModel = MapViewModel(locations: _self.viewModel.locations)
+                } else if let listViewController = $0 as? LocationsListViewController {
+                    listViewController.viewModel = LocationsListViewModel(locations: _self.viewModel.locations)
+                }
+            }
         }
 
         viewModel.didFailToFetchDefaultLocations = { [weak self] error in
@@ -46,9 +41,7 @@ class MainViewController: UIViewController {
         viewModel.fetchLocations()
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        childMapViewController = segue.destination as? MapViewController
-    }
+    // MARK: - Actions
 
     @IBAction func tabSegmentChanged(_ sender: UISegmentedControl) {
         guard let tab = PresentationType(rawValue: sender.selectedSegmentIndex) else {
@@ -59,15 +52,14 @@ class MainViewController: UIViewController {
 
     // MARK: - Private
 
-    private func loadViewController(for tab: PresentationType) {
-        viewModel.fetchLocations()
+    private func setupViewControllers() {
+        mainViewControllers = [ createMapViewController(), createListViewController() ]
+        setViewControllers([mainViewControllers[0]], direction: .forward, animated: false, completion: nil)
+    }
 
-        switch tab {
-        case .map:
-            childViewController = createMapViewController()
-        case .list:
-            childViewController = createListViewController()
-        }
+    private func loadViewController(for tab: PresentationType) {
+        setViewControllers([mainViewControllers[tab.rawValue]], direction: tab.navigationDirection, animated: true, completion: nil)
+        viewModel.fetchLocations()
     }
 
     private func createMapViewController() -> UIViewController {
@@ -80,21 +72,6 @@ class MainViewController: UIViewController {
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LocationsListViewController") as! LocationsListViewController
         viewController.viewModel = LocationsListViewModel(locations: viewModel.locations)
         return viewController
-    }
-
-    private func removeChildViewController(_ childVC: UIViewController) {
-        childVC.willMove(toParentViewController: nil)
-        childVC.view.removeFromSuperview()
-        childVC.removeFromParentViewController()
-    }
-
-    private func addChildViewController(_ childVC: UIViewController, toContainerView containerView: UIView) {
-        addChildViewController(childVC)
-        childVC.view.frame = containerView.bounds
-        childVC.view.setNeedsLayout()
-        childVC.view.layoutIfNeeded()
-        containerView.addSubview(childVC.view)
-        childVC.didMove(toParentViewController: self)
     }
 
     private func showErrorDialog(for error: Error?) {
@@ -112,6 +89,15 @@ class MainViewController: UIViewController {
     private enum PresentationType: Int {
         case map
         case list
+
+        var navigationDirection: UIPageViewControllerNavigationDirection {
+            switch self {
+            case .map:
+                return .reverse
+            case .list:
+                return .forward
+            }
+        }
     }
 
 }

@@ -11,7 +11,14 @@ import CoreLocation
 
 class LocationsListViewController: UITableViewController {
 
-    var viewModel: LocationsListViewModel!
+    var viewModel: LocationsListViewModel! {
+        didSet {
+            guard isViewLoaded else {
+                return
+            }
+            tableView.reloadData()
+        }
+    }
 
     private static let showDetailsSegueId = "ShowDetails"
 

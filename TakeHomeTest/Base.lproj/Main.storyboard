@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xw6-w1-tqh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EPz-eW-QLb">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,45 +10,28 @@
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
-        <scene sceneID="6OZ-yU-6JX">
+        <scene sceneID="z8U-w4-cq8">
             <objects>
-                <navigationController id="xw6-w1-tqh" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="V67-d2-5gP">
+                <navigationController id="EPz-eW-QLb" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="z8J-3S-at6">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="QgD-gt-eif"/>
+                        <segue destination="VOi-7b-7Mx" kind="relationship" relationship="rootViewController" id="dNp-fI-cu0"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XlV-Qp-4CJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="425-fx-Ozc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-692" y="134"/>
+            <point key="canvasLocation" x="-628" y="190"/>
         </scene>
         <!--Main View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <scene sceneID="dSc-ju-40V">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="TakeHomeTest" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dl4-pD-j2F">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                            </containerView>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="Dl4-pD-j2F" firstAttribute="bottom" secondItem="8bC-Xf-vdC" secondAttribute="bottom" id="He2-XC-SUQ"/>
-                            <constraint firstItem="Dl4-pD-j2F" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="VjX-qX-4LJ"/>
-                            <constraint firstItem="Dl4-pD-j2F" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="lOl-xh-39q"/>
-                            <constraint firstItem="Dl4-pD-j2F" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="r8r-LO-849"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="pPR-EO-bu8">
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="VOi-7b-7Mx" customClass="MainViewController" customModule="TakeHomeTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="MaI-dI-H7w">
                         <nil key="title"/>
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="Cu1-FI-WHD">
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Njd-do-wcw">
                             <rect key="frame" x="29.5" y="7" width="316" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
@@ -56,18 +39,17 @@
                                 <segment title="List"/>
                             </segments>
                             <connections>
-                                <action selector="tabSegmentChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="RPx-TX-rUb"/>
+                                <action selector="tabSegmentChanged:" destination="VOi-7b-7Mx" eventType="valueChanged" id="W0g-hs-p7x"/>
                             </connections>
                         </segmentedControl>
                     </navigationItem>
                     <connections>
-                        <outlet property="containerView" destination="Dl4-pD-j2F" id="LBf-Yc-v5r"/>
-                        <outlet property="tabSegmentedControl" destination="Cu1-FI-WHD" id="czo-4d-gay"/>
+                        <outlet property="tabSegmentedControl" destination="Njd-do-wcw" id="Ibb-lL-e2I"/>
                     </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CRa-s8-pdc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
+            <point key="canvasLocation" x="201" y="190"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="Asz-ES-Q4M">
@@ -124,7 +106,7 @@
                                                     <constraint firstAttribute="height" constant="30" id="YR3-oc-e2X"/>
                                                     <constraint firstAttribute="width" constant="30" id="sLO-53-8JP"/>
                                                 </constraints>
-                                                <state key="normal" image="CloseIcon"/>
+                                                <state key="normal" image="PopupCloseIcon"/>
                                                 <connections>
                                                     <action selector="closeInfoViewPressed:" destination="g9U-ol-ui4" eventType="touchUpInside" id="cRz-jQ-gCA"/>
                                                 </connections>
@@ -387,7 +369,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="CloseIcon" width="11" height="11"/>
         <image name="DisclosureIndicator" width="7" height="11"/>
+        <image name="PopupCloseIcon" width="11" height="11"/>
     </resources>
 </document>
