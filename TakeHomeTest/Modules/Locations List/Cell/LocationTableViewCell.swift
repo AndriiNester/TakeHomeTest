@@ -17,7 +17,7 @@ class LocationTableViewCell: UITableViewCell {
     func populate(with viewModel: LocationCellViewModel) {
         titleLabel.text = viewModel.title
         detailedLabel.text = viewModel.details
-        rightDetailedLabel.text = viewModel.rightDetails
+        rightDetailedLabel.text = viewModel.distance
     }
 
 }

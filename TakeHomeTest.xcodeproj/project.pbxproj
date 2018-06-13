@@ -25,6 +25,7 @@
 		491C7D4A20D0FC7E008775B5 /* LocationCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491C7D4520D0FC7E008775B5 /* LocationCellViewModelTests.swift */; };
 		491C7D4B20D0FC7E008775B5 /* MainViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491C7D4620D0FC7E008775B5 /* MainViewModelTests.swift */; };
 		491C7D4D20D13D9E008775B5 /* FakeStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491C7D4C20D13D9D008775B5 /* FakeStorage.swift */; };
+		491C7D5020D1468C008775B5 /* UserCoordinateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491C7D4F20D1468C008775B5 /* UserCoordinateProvider.swift */; };
 		870C12E95EEA4A7BA59CAA6B /* Pods_TakeHomeTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A3F6E437CD53F56BC386F39 /* Pods_TakeHomeTest.framework */; };
 		97FECCEB64BFD7C388075F46 /* Pods_TakeHomeTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D93E1464A041AD0D189A7E38 /* Pods_TakeHomeTestTests.framework */; };
 		CE13831D20CEB5FD004F1CC1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13831B20CEB5FD004F1CC1 /* MainViewController.swift */; };
@@ -73,6 +74,7 @@
 		491C7D4520D0FC7E008775B5 /* LocationCellViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCellViewModelTests.swift; sourceTree = "<group>"; };
 		491C7D4620D0FC7E008775B5 /* MainViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewModelTests.swift; sourceTree = "<group>"; };
 		491C7D4C20D13D9D008775B5 /* FakeStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeStorage.swift; sourceTree = "<group>"; };
+		491C7D4F20D1468C008775B5 /* UserCoordinateProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCoordinateProvider.swift; sourceTree = "<group>"; };
 		66C189BE2163D6BE7A42BC54 /* Pods-TakeHomeTestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TakeHomeTestTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TakeHomeTestTests/Pods-TakeHomeTestTests.release.xcconfig"; sourceTree = "<group>"; };
 		81CB4CBEB4435221A79941FF /* Pods-TakeHomeTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TakeHomeTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-TakeHomeTest/Pods-TakeHomeTest.release.xcconfig"; sourceTree = "<group>"; };
 		CE13831B20CEB5FD004F1CC1 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -177,10 +179,18 @@
 		491C7D3B20D0F1E9008775B5 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				491C7D3D20D0F213008775B5 /* LocationCellViewModel.swift */,
 				491C7D3C20D0F213008775B5 /* LocationTableViewCell.swift */,
+				491C7D3D20D0F213008775B5 /* LocationCellViewModel.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		491C7D4E20D14682008775B5 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				491C7D4F20D1468C008775B5 /* UserCoordinateProvider.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		BECEBCD35CCEC56827BF701D /* Pods */ = {
@@ -200,6 +210,7 @@
 				CE13830F20CEB2FA004F1CC1 /* Models */,
 				49184A6A20D05A2E00EF11E0 /* Storage */,
 				CE13831120CEB2FA004F1CC1 /* Locations HTTP Service */,
+				491C7D4E20D14682008775B5 /* Common */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -462,6 +473,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				490765C920CFC19F00814309 /* LocationDetailsViewController.swift in Sources */,
+				491C7D5020D1468C008775B5 /* UserCoordinateProvider.swift in Sources */,
 				CE13832B20CEB8C0004F1CC1 /* LocationsHttpService.swift in Sources */,
 				49184A7520D05B6500EF11E0 /* CLLocationCoordinate2D+Distance.swift in Sources */,
 				CE13831D20CEB5FD004F1CC1 /* MainViewController.swift in Sources */,

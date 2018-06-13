@@ -13,7 +13,7 @@ struct LocationCellViewModel {
 
     let title: String
     let details: String
-    let rightDetails: String?
+    let distance: String?
 
     init(location: ScenicPhotoLocation, userCoordinate: CLLocationCoordinate2D?) {
         title = location.name
@@ -22,7 +22,7 @@ struct LocationCellViewModel {
         } else {
             details = NSLocalizedString("no notes", comment: "Subtitle when cell is whithout notes")
         }
-        rightDetails = userCoordinate?.formattedDistance(to: location.coordinate)
+        distance = userCoordinate?.formattedDistance(to: location.coordinate)
     }
 
 }

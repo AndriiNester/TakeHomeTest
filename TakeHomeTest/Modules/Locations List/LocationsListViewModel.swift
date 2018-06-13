@@ -32,15 +32,3 @@ class LocationsListViewModel {
     }
 
 }
-
-protocol UserCoordinateProvider {
-    var userCoordinate: CLLocationCoordinate2D? { get }
-}
-
-extension CLLocationManager: UserCoordinateProvider {
-
-    var userCoordinate: CLLocationCoordinate2D? {
-        return location?.coordinate
-    }
-
-}

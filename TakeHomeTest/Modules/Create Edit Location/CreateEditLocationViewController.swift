@@ -24,8 +24,8 @@ class CreateEditLocationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        nameTextField.becomeFirstResponder()
         title = viewModel.screenTitle
+        nameTextField.becomeFirstResponder()
         nameTextField.text = viewModel.name
         notesTextView.text = viewModel.notes
         saveButton.isEnabled = viewModel.isSaveEnabled
@@ -34,6 +34,8 @@ class CreateEditLocationViewController: UIViewController {
             enableNotesTextViewPlaceholder()
         }
     }
+
+    // MARK: - Actions
 
     @IBAction func cancelPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -61,12 +63,12 @@ class CreateEditLocationViewController: UIViewController {
         return notesTextView.text == notesPlaceholderText && notesTextView.textColor == notesPlaceholderColor
     }
 
-    func enableNotesTextViewPlaceholder() {
+    private func enableNotesTextViewPlaceholder() {
         notesTextView.text = notesPlaceholderText
         notesTextView.textColor = notesPlaceholderColor
     }
 
-    func disableNotesTextViewPlaceholder() {
+    private func disableNotesTextViewPlaceholder() {
         notesTextView.text = nil
         notesTextView.textColor = notesDefaultTextColor
     }

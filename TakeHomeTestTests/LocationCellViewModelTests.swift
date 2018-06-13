@@ -48,7 +48,7 @@ class LocationCellViewModelTests: XCTestCase {
         let userCoordinate = CLLocationCoordinate2D(latitude: 1, longitude: 1)
         let viewModel = LocationCellViewModel(location: locationWithNotes, userCoordinate: userCoordinate)
         let locationCoordinate = locationWithNotes.coordinate
-        XCTAssertEqual(viewModel.rightDetails, userCoordinate.formattedDistance(to: locationCoordinate))
+        XCTAssertEqual(viewModel.distance, userCoordinate.formattedDistance(to: locationCoordinate))
     }
 
 }

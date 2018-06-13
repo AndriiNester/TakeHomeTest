@@ -18,6 +18,7 @@ class MapViewController: UIViewController {
                 return
             }
             showScenicPhotoLocations()
+            setupSelectedLocationInfoView()
         }
     }
 
@@ -31,7 +32,7 @@ class MapViewController: UIViewController {
     }
 
     private var isSelectedLocationSaved: Bool {
-        return selectedAnnotation as? ScenicPhotoLocation != nil
+        return selectedAnnotation != nil && isAnnotationSaved(selectedAnnotation!)
     }
 
     @IBOutlet private weak var mapView: MKMapView!
@@ -138,9 +139,7 @@ class MapViewController: UIViewController {
     }
 
     private func addAnnotation(at coordinate: CLLocationCoordinate2D, withName name: String?) {
-        if let inProgressAnnotation = inProgressAnnotation {
-            mapView.removeAnnotation(inProgressAnnotation)
-        }
+        removeInProgressAnnotation()
         let annotation = MKPointAnnotation()
         annotation.coordinate = coordinate
         annotation.title = name
@@ -149,18 +148,32 @@ class MapViewController: UIViewController {
     }
 
     private func replaceAnnotation(_ annotation: MKAnnotation, with newAnnotation: MKAnnotation) {
-        self.mapView.removeAnnotation(annotation)
-        self.inProgressAnnotation = newAnnotation
-        self.mapView.addAnnotation(newAnnotation)
-        if let newLocation = newAnnotation as? ScenicPhotoLocation {
-            self.setupLocationInfoView(with: newLocation)
+        if annotation.isEqual(inProgressAnnotation) {
+            inProgressAnnotation = newAnnotation
         }
+        mapView.removeAnnotation(annotation)
+        mapView.addAnnotation(newAnnotation)
+        if let newLocation = newAnnotation as? ScenicPhotoLocation {
+            setupLocationInfoView(with: newLocation)
+        }
+    }
+
+    private func removeInProgressAnnotation() {
+        guard let inProgressAnnotation = inProgressAnnotation else {
+            return
+        }
+        mapView.removeAnnotation(inProgressAnnotation)
+        self.inProgressAnnotation = nil
     }
 
     // MARK: - Helpers
 
     private var hasSelectedAnnotations: Bool {
         return mapView.annotations.map({ mapView.view(for: $0) }).compactMap({ $0 }).reduce(false, { $0 || $1.isSelected })
+    }
+
+    private func isAnnotationSaved(_ annotation: MKAnnotation) -> Bool {
+        return annotation as? ScenicPhotoLocation != nil
     }
 
     private func deselectAllAnnotations(except excludeAnnotation: MKAnnotation? = nil) {
@@ -193,23 +206,18 @@ class MapViewController: UIViewController {
     }
 
     private func setupSelectedLocationInfoView() {
-        guard let location = selectedAnnotation as? ScenicPhotoLocation else {
+        if let location = selectedAnnotation as? ScenicPhotoLocation {
+            setupLocationInfoView(with: location)
+        } else {
             setupSelectedNewLocationInfoView()
-            return
         }
-        setupLocationInfoView(with: location)
     }
 
     private func setupLocationInfoView(with location: ScenicPhotoLocation) {
         selectedLocationTitleLabel.text = location.name
         updateDistanceInfo(to: location.coordinate)
-
         locationActionButton.setTitle(NSLocalizedString("Details", comment: "Details button title"), for: .normal)
-
-        UIView.animate(withDuration: defaultAnimationDuration) {
-            self.selectedLocationInfoView.isHidden = false
-            self.selectedLocationContainerView.layoutIfNeeded()
-        }
+        setSelectedLocationInfoView(hidden: false)
     }
 
     private func setupSelectedNewLocationInfoView() {
@@ -218,13 +226,8 @@ class MapViewController: UIViewController {
         }
         selectedLocationTitleLabel.text = newLocation.title
         updateDistanceInfo(to: newLocation.coordinate)
-
         locationActionButton.setTitle(NSLocalizedString("Save Location", comment: "Save button title"), for: .normal)
-
-        UIView.animate(withDuration: defaultAnimationDuration) {
-            self.selectedLocationInfoView.isHidden = false
-            self.selectedLocationContainerView.layoutIfNeeded()
-        }
+        setSelectedLocationInfoView(hidden: false)
     }
 
     private func updateDistanceInfo(to coordinate: CLLocationCoordinate2D) {
@@ -241,18 +244,24 @@ extension MapViewController: MKMapViewDelegate {
         guard let annotationView = views.last else {
             return
         }
-        guard let annotation = annotationView.annotation,
+
+        if let annotation = annotationView.annotation,
             let inProgressAnnotation = inProgressAnnotation,
-            annotation.isEqual(inProgressAnnotation) else {
-                return
+            annotation.isEqual(inProgressAnnotation) {
+            deselectAllAnnotations()
+            annotationView.setSelected(true, animated: true)
         }
-        deselectAllAnnotations()
-        annotationView.setSelected(true, animated: true)
-        setupSelectedNewLocationInfoView()
+
+        if let annotation = annotationView.annotation, !isAnnotationSaved(annotation) {
+            setupSelectedNewLocationInfoView()
+        } else {
+            inProgressAnnotation = nil
+        }
     }
 
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         deselectAllAnnotations(except: view.annotation)
+        removeInProgressAnnotation()
         setupSelectedLocationInfoView()
     }
 
