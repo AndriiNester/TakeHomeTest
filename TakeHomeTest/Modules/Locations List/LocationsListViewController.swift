@@ -31,12 +31,12 @@ class LocationsListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell", for: indexPath)
-
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell", for: indexPath) as? LocationTableViewCell else {
+            return UITableViewCell()
+        }
         let location = viewModel.locations[indexPath.row]
-        cell.textLabel?.text = location.name
-        cell.detailTextLabel?.text = viewModel.distance(to: location.coordinate)
-
+        let cellViewModel = LocationCellViewModel(location: location, userCoordinate: viewModel.userCoordinate)
+        cell.populate(with: cellViewModel)
         return cell
     }
 

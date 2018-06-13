@@ -18,6 +18,8 @@
 		49184A7520D05B6500EF11E0 /* CLLocationCoordinate2D+Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49184A7420D05B6500EF11E0 /* CLLocationCoordinate2D+Distance.swift */; };
 		491C7D3920D0053C008775B5 /* LocationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491C7D3720D0053C008775B5 /* LocationsListViewController.swift */; };
 		491C7D3A20D0053C008775B5 /* LocationsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491C7D3820D0053C008775B5 /* LocationsListViewModel.swift */; };
+		491C7D3E20D0F213008775B5 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491C7D3C20D0F213008775B5 /* LocationTableViewCell.swift */; };
+		491C7D3F20D0F213008775B5 /* LocationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491C7D3D20D0F213008775B5 /* LocationCellViewModel.swift */; };
 		870C12E95EEA4A7BA59CAA6B /* Pods_TakeHomeTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A3F6E437CD53F56BC386F39 /* Pods_TakeHomeTest.framework */; };
 		97FECCEB64BFD7C388075F46 /* Pods_TakeHomeTestTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D93E1464A041AD0D189A7E38 /* Pods_TakeHomeTestTests.framework */; };
 		CE13831D20CEB5FD004F1CC1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE13831B20CEB5FD004F1CC1 /* MainViewController.swift */; };
@@ -60,6 +62,8 @@
 		49184A7420D05B6500EF11E0 /* CLLocationCoordinate2D+Distance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CLLocationCoordinate2D+Distance.swift"; sourceTree = "<group>"; };
 		491C7D3720D0053C008775B5 /* LocationsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsListViewController.swift; sourceTree = "<group>"; };
 		491C7D3820D0053C008775B5 /* LocationsListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsListViewModel.swift; sourceTree = "<group>"; };
+		491C7D3C20D0F213008775B5 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
+		491C7D3D20D0F213008775B5 /* LocationCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCellViewModel.swift; sourceTree = "<group>"; };
 		66C189BE2163D6BE7A42BC54 /* Pods-TakeHomeTestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TakeHomeTestTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TakeHomeTestTests/Pods-TakeHomeTestTests.release.xcconfig"; sourceTree = "<group>"; };
 		81CB4CBEB4435221A79941FF /* Pods-TakeHomeTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TakeHomeTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-TakeHomeTest/Pods-TakeHomeTest.release.xcconfig"; sourceTree = "<group>"; };
 		CE13831B20CEB5FD004F1CC1 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -157,8 +161,18 @@
 			children = (
 				491C7D3720D0053C008775B5 /* LocationsListViewController.swift */,
 				491C7D3820D0053C008775B5 /* LocationsListViewModel.swift */,
+				491C7D3B20D0F1E9008775B5 /* Cell */,
 			);
 			path = "Locations List";
+			sourceTree = "<group>";
+		};
+		491C7D3B20D0F1E9008775B5 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				491C7D3D20D0F213008775B5 /* LocationCellViewModel.swift */,
+				491C7D3C20D0F213008775B5 /* LocationTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		BECEBCD35CCEC56827BF701D /* Pods */ = {
@@ -446,10 +460,12 @@
 				CE13832420CEB692004F1CC1 /* ScenicPhotoLocation.swift in Sources */,
 				CE13832A20CEB8C0004F1CC1 /* LocationsHttpServiceProtocol.swift in Sources */,
 				490765C520CFC19500814309 /* CreateEditLocationViewModel.swift in Sources */,
+				491C7D3F20D0F213008775B5 /* LocationCellViewModel.swift in Sources */,
 				49184A6E20D05A4400EF11E0 /* UserDefaultsStorage.swift in Sources */,
 				CE13832120CEB64C004F1CC1 /* MapViewController.swift in Sources */,
 				49184A7320D05B6500EF11E0 /* UserDefaults+Helpers.swift in Sources */,
 				49184A6F20D05A4400EF11E0 /* ScenicPhotoLocationLocalStorage.swift in Sources */,
+				491C7D3E20D0F213008775B5 /* LocationTableViewCell.swift in Sources */,
 				CE13831E20CEB5FD004F1CC1 /* MainViewModel.swift in Sources */,
 				490765C620CFC19500814309 /* CreateEditLocationViewController.swift in Sources */,
 				49184A7020D05A4400EF11E0 /* Storage.swift in Sources */,
