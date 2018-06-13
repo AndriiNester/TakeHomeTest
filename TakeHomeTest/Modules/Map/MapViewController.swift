@@ -120,7 +120,7 @@ class MapViewController: UIViewController {
 
     private func setupCurrentLocationTracking() {
         locationManager.delegate = self
-        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
 
         if CLLocationManager.locationServicesEnabled() {
             locationManager.startUpdatingLocation()
@@ -231,7 +231,7 @@ class MapViewController: UIViewController {
     }
 
     private func updateDistanceInfo(to coordinate: CLLocationCoordinate2D) {
-        selectedLocationSubtitleLabel.text = mapView.userLocation.coordinate.formattedDistance(to: coordinate)
+        selectedLocationSubtitleLabel.text = mapView.userLocation.location?.coordinate.formattedDistance(to: coordinate)
     }
 
 }
