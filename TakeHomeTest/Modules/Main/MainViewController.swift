@@ -39,14 +39,8 @@ class MainViewController: UIViewController {
             _self.childMapViewController?.viewModel = MapViewModel(locations: _self.viewModel.locations)
         }
 
-        viewModel.didFailToFetchDefaultLocations = { _ in
-            // TODO: show error dialog
-            NSLog("error when fetching default locations")
-        }
-
-        viewModel.didFailToFetchUserLocations = { _ in
-            // TODO: show error dialog
-            NSLog("error when fetching user locations")
+        viewModel.didFailToFetchDefaultLocations = { [weak self] error in
+            self?.showErrorDialog(for: error)
         }
 
         viewModel.fetchLocations()
@@ -103,18 +97,21 @@ class MainViewController: UIViewController {
         childVC.didMove(toParentViewController: self)
     }
 
+    private func showErrorDialog(for error: Error?) {
+        let defaultErrorMessage = NSLocalizedString("Sorry, could not load default locations", comment: "Default error message")
+
+        let dialog = UIAlertController(
+            title: NSLocalizedString("Error!", comment: "Error dialog title"),
+            message: error?.localizedDescription ?? defaultErrorMessage,
+            preferredStyle: .alert
+        )
+        dialog.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(dialog, animated: true, completion: nil)
+    }
+
     private enum PresentationType: Int {
         case map
         case list
-
-        var title: String {
-            switch self {
-            case .map:
-                return NSLocalizedString("Map", comment: "Map title")
-            case .list:
-                return NSLocalizedString("List", comment: "List title")
-            }
-        }
     }
 
 }

@@ -12,7 +12,6 @@ class MainViewModel {
 
     var locationsUpdated: (() -> Void)?
     var didFailToFetchDefaultLocations: ((Error?) -> Void)?
-    var didFailToFetchUserLocations: ((Error?) -> Void)?
 
     private let httpService: LocationsHTTPService
 
@@ -29,7 +28,7 @@ class MainViewModel {
     }
 
     func fetchLocations() {
-        if UserDefaults.isFirstLaunch {
+        if !UserDefaults.hasFetchedDefaultLocations {
             fetchDefaultLocations()
         } else {
             fetchStoredLocations()

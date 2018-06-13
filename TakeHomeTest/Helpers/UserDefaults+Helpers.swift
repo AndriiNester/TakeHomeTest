@@ -10,13 +10,13 @@ import Foundation
 
 extension UserDefaults {
 
-    static var isFirstLaunch: Bool {
-        let hasBeenLaunchedBeforeFlag = "hasBeenLaunchedBeforeFlag"
-        let isFirstLaunch = !UserDefaults.standard.bool(forKey: hasBeenLaunchedBeforeFlag)
-        if isFirstLaunch {
-            UserDefaults.standard.set(true, forKey: hasBeenLaunchedBeforeFlag)
+    static var hasFetchedDefaultLocations: Bool {
+        let hasFetchedDefaultLocationsFlag = "hasFetchedDefaultLocations"
+        let hasFetched = UserDefaults.standard.bool(forKey: hasFetchedDefaultLocationsFlag)
+        if !hasFetched {
+            UserDefaults.standard.set(true, forKey: hasFetchedDefaultLocationsFlag)
         }
-        return isFirstLaunch
+        return hasFetched
     }
 
 }
