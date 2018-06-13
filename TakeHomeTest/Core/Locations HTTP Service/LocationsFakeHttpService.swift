@@ -18,8 +18,10 @@ class LocationsFakeHttpService: LocationsHTTPService {
     ]
 
     var returnError: Error?
+    var isGetScenicPhotoLocationsCalled: Bool = false
 
     func getScenicPhotoLocations(completion: @escaping (([ScenicPhotoLocation], Error?) -> Void)) {
+        isGetScenicPhotoLocationsCalled = true
         completion(returnCoordinates ?? [], returnError)
     }
 

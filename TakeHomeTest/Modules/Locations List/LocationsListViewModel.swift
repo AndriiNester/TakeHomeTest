@@ -14,14 +14,10 @@ class LocationsListViewModel {
     var locations: [ScenicPhotoLocation]
     let userCoordinate: CLLocationCoordinate2D?
 
-    init(locations: [ScenicPhotoLocation]) {
+    init(locations: [ScenicPhotoLocation], userCoordinateProvider: UserCoordinateProvider = CLLocationManager()) {
         self.locations = locations
-        self.userCoordinate = CLLocationManager().location?.coordinate
+        self.userCoordinate = userCoordinateProvider.userCoordinate
         sortLocations()
-    }
-
-    func distance(to coordinate: CLLocationCoordinate2D) -> String? {
-        return userCoordinate?.formattedDistance(to: coordinate)
     }
 
     // MARK: - Private
@@ -33,6 +29,18 @@ class LocationsListViewModel {
         locations = locations.sorted(by: { location1, location2 in
             return location1.coordinate.distance(to: userCoordinate) < location2.coordinate.distance(to: userCoordinate)
         })
+    }
+
+}
+
+protocol UserCoordinateProvider {
+    var userCoordinate: CLLocationCoordinate2D? { get }
+}
+
+extension CLLocationManager: UserCoordinateProvider {
+
+    var userCoordinate: CLLocationCoordinate2D? {
+        return location?.coordinate
     }
 
 }

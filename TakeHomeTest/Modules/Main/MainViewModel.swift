@@ -14,6 +14,8 @@ class MainViewModel {
     var didFailToFetchDefaultLocations: ((Error?) -> Void)?
 
     private let httpService: LocationsHTTPService
+    private let storage: ScenicPhotoLocationStorage
+    private let userDefaults: UserDefaults
 
     private(set) var locations: [ScenicPhotoLocation] = [] {
         didSet {
@@ -21,14 +23,14 @@ class MainViewModel {
         }
     }
 
-    private let storage = ScenicPhotoLocationLocalStorage()
-
-    init(httpService: LocationsHTTPService = LocationsRealHTTPService()) {
+    init(httpService: LocationsHTTPService = LocationsRealHTTPService(), storage: ScenicPhotoLocationStorage = ScenicPhotoLocationLocalStorage(), userDefaults: UserDefaults = UserDefaults.standard) {
         self.httpService = httpService
+        self.storage = storage
+        self.userDefaults = userDefaults
     }
 
     func fetchLocations() {
-        if !UserDefaults.hasFetchedDefaultLocations {
+        if !userDefaults.hasFetchedDefaultLocations {
             fetchDefaultLocations()
         } else {
             fetchStoredLocations()

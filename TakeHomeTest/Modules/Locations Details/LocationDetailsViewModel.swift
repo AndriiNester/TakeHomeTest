@@ -23,11 +23,11 @@ class LocationDetailsViewModel {
         return CreateEditLocationViewModel(location: location)
     }
 
-    init(location: ScenicPhotoLocation) {
+    init(location: ScenicPhotoLocation, userCoordinateProvider: UserCoordinateProvider? = CLLocationManager()) {
         self.location = location
         self.name = location.name
         self.notes = location.notes?.isEmpty == false ? location.notes : emptyDescriptionPlaceholder
-        self.subtitle = CLLocationManager().location?.coordinate.formattedDistance(to: location.coordinate)
+        self.subtitle = userCoordinateProvider?.userCoordinate?.formattedDistance(to: location.coordinate)
     }
 
 }

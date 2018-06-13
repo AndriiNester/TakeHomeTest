@@ -29,17 +29,19 @@ class CreateEditLocationViewModel {
         }
     }
 
-    private let localStorage = ScenicPhotoLocationLocalStorage()
+    private let storage: ScenicPhotoLocationStorage
 
-    init(location: ScenicPhotoLocation) {
+    init(location: ScenicPhotoLocation, storage: ScenicPhotoLocationStorage = ScenicPhotoLocationLocalStorage()) {
         self.location = location
+        self.storage = storage
         self.name = location.name
         self.notes = location.notes
         self.coordinate = location.coordinate
     }
 
-    init(coordinate: CLLocationCoordinate2D) {
+    init(coordinate: CLLocationCoordinate2D, storage: ScenicPhotoLocationStorage = ScenicPhotoLocationLocalStorage()) {
         self.coordinate = coordinate
+        self.storage = storage
     }
 
     func saveLocation() {
@@ -51,14 +53,14 @@ class CreateEditLocationViewModel {
                                                       latitude: existingLocation.latitude,
                                                       longitude: existingLocation.longitude,
                                                       notes: notes)
-            localStorage.updateLocation(updatedLocation)
+            storage.updateLocation(updatedLocation)
             location = updatedLocation
         } else {
             let newLocation = ScenicPhotoLocation(name: name,
                                                   latitude: coordinate.latitude,
                                                   longitude: coordinate.longitude,
                                                   notes: notes)
-            localStorage.createLocation(newLocation)
+            storage.createLocation(newLocation)
             location = newLocation
         }
     }

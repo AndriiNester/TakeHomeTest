@@ -21,8 +21,4 @@ class MapViewModel {
         self.locations = locations
     }
 
-    func distanceBetween(coordinate1: CLLocationCoordinate2D, coordinate2: CLLocationCoordinate2D) -> String {
-        return coordinate1.formattedDistance(to: coordinate2)
-    }
-
 }

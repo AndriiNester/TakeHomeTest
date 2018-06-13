@@ -8,7 +8,14 @@
 
 import Foundation
 
-class ScenicPhotoLocationLocalStorage {
+protocol ScenicPhotoLocationStorage {
+    func getLocation(withId id: String) -> ScenicPhotoLocation?
+    func getAllLocations() -> [ScenicPhotoLocation]
+    func createLocation(_ location: ScenicPhotoLocation)
+    func updateLocation(_ location: ScenicPhotoLocation)
+}
+
+class ScenicPhotoLocationLocalStorage: ScenicPhotoLocationStorage {
 
     private let storage: Storage
 
